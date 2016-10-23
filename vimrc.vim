@@ -22,7 +22,7 @@ set laststatus=2
 set confirm
 
 set visualbell
-
+set t_vb=
 set cmdheight=2
 
 set number
