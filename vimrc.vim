@@ -33,3 +33,5 @@ set softtabstop=4
 set expandtab
 
 
+noremap : ;
+noremap ; :
