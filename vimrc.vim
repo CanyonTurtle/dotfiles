@@ -37,3 +37,5 @@ noremap ; :
 
 noremap : ;
 noremap ; :
+
+imap ii <Esc>
