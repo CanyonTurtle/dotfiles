@@ -37,3 +37,10 @@ noremap ; :
 
 noremap : ;
 noremap ; :
+:imap ii <Esc>
+
+fu! Tabz(num)
+    let &tabstop = a:num
+    let &shiftwidth = a:num
+    let &softtabstop = a:num
+endfunction
