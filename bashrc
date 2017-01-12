@@ -1,6 +1,20 @@
 alias v='vim'
 
 gac() {
-    git add $1
-    git commit $1 -m $2
+    files=$1
+    params=
+    while [ "$2" != "" ]; do
+        case $2 in
+            -m )
+                shift
+                while [ "$2" != "" ]; do
+                    params="$params $2"
+                    shift
+                done
+             ;;
+        esac
+        shift
+    done
+    git add $files
+    git commit $files -m "$params"
 }
