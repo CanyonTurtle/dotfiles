@@ -1,2 +1,6 @@
 alias v='vim'
-command! Tabz call Tabz($1)
+
+gac() {
+    git add $1
+    git commit $1 -m $2
+}
