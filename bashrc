@@ -1,5 +1,6 @@
 alias v='vim'
 
+
 gac() {
     files=$1
     echo $files
@@ -16,6 +17,6 @@ gac() {
         esac
         shift
     done
-    git add $files
-    git commit $files -m "$params"
+    echo $files
+    echo $files -m "$params"
 }
