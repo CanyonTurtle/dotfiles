@@ -11,6 +11,9 @@ Use these config files to improve shell-based linux editing workflow.
   * aliases for git, vim
 3. Tmux
   * map prefixer to ctrl-a
+4. Git
+  * many aliases, on shell and git level
+  * gitignore included
 
 ##Setup
 Clone this repository into your home directory:
@@ -41,3 +44,4 @@ for bash, example bashrc include in ~/.bashrc :
 
 for tmux, simply rename `tmux.conf` to `.tmux.conf` and place in home directory:
 `mv tmux.conf ~/.tmux.conf`
+for git, similarly: `mv gitignore ~/.gitignore` and `mv gitconfig ~/.gitconfig`
