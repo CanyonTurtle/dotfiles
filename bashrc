@@ -1,5 +1,7 @@
 #vim shorter command
 alias v='vim'
+alias vi='vim'
+alias vm='vim'
 
 #git aliases
 alias gs='git status'

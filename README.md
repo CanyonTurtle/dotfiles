@@ -46,4 +46,4 @@ for tmux, simply rename `tmux.conf` to `.tmux.conf` and place in home directory:
 `mv tmux.conf ~/.tmux.conf`
 for git, similarly: `mv gitignore ~/.gitignore` and `mv gitconfig ~/.gitconfig`
 ###Credit
-Git config source [https://gist.github.com/pksunkara/988716#file-gitconfig]
+[Git config source] (https://gist.github.com/pksunkara/988716#file-gitconfig)
