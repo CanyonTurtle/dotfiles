@@ -1,6 +1,17 @@
 # myrc
 Use these config files to improve shell-based linux editing workflow.
 
+##Features
+1. Vim
+  * ease-of-use remap of escape to jk
+  * remap of ; to : for easy commands
+  * see command bar, wildmenu, ect.
+  * change spacing-related settings: ':call Tabz(4)' will set document up for 4-space tabs. 
+2. Shell
+  * aliases for git, vim
+3. Tmux
+  * map prefixer to ctrl-a
+
 ##Setup
 Clone this repository into your home directory:
 
