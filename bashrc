@@ -2,6 +2,7 @@ alias v='vim'
 
 gac() {
     files=$1
+    echo $files
     params=
     while [ "$2" != "" ]; do
         case $2 in
