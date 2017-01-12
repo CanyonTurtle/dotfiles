@@ -13,3 +13,5 @@ alias gx='gitx --all'
 alias got='git '
 alias get='git '
 
+alias atc="git add --all && git commit --all"
+
