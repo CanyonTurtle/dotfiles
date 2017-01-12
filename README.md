@@ -39,4 +39,5 @@ for bash, example bashrc include in ~/.bashrc :
 ...
 ```
 
-for tmux, simply rename `tmux.conf` to `.tmux.conf` and place in home directory.
+for tmux, simply rename `tmux.conf` to `.tmux.conf` and place in home directory:
+`mv tmux.conf ~/.tmux.conf`
