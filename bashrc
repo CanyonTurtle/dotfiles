@@ -1,22 +1,15 @@
+#vim shorter command
 alias v='vim'
 
+#git aliases
+alias gs='git status'
+alias ga='git add'
+alias gc='git commit'
+alias gd='git diff'
+alias go='git checkout'
+alias gk='gitk --all&'
+alias gx='gitx --all'
 
-gac() {
-    files=$1
-    params=
-    while [ "$2" != "" ]; do
-        case $2 in
-            -m )
-                shift
-                while [ "$2" != "" ]; do
-                    params="$params $2"
-                    shift
-                done
-             ;;
-        esac
-        shift
-    done
-    echo "trying to do add $files commit $files -m $params"
-    git add $files
-    git commit $files -m "$params"
-}
+alias got='git '
+alias get='git '
+
