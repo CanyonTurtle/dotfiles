@@ -3,7 +3,6 @@ alias v='vim'
 
 gac() {
     files=$1
-    echo $files
     params=
     while [ "$2" != "" ]; do
         case $2 in
@@ -17,6 +16,7 @@ gac() {
         esac
         shift
     done
-    echo $files
-    echo $files -m "$params"
+    echo "trying to do add $files commit $files -m $params"
+    git add $files
+    git commit $files -m "$params"
 }
