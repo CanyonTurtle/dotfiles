@@ -1,3 +1,6 @@
+#general shortcuts
+alias l='ls -la'
+
 #vim shorter command
 alias v='vim'
 alias vi='vim'
