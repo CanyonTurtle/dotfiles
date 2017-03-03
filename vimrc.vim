@@ -1,3 +1,7 @@
+"pathogen stuffs.
+source $HOME/dotfiles/vim/bundle/vim-pathogen/autoload/pathogen.vim
+execute pathogen#infect('bundle/{}', '$HOME/dotfiles/vim/bundle/{}')
+
 "syntax settings, use non-vi compatible features.
 set nocompatible
 filetype indent plugin on
