@@ -7,6 +7,8 @@ Most of the content of the configuration is not my own; it comes from a mix of b
 - [oh my tmux](https://github.com/gpakosz/.tmux)
 - [the best and greatest tmux conf ever](https://gist.github.com/spicycode/1229612)
 
+Note: for tmux and vim to look nice, there needs to be unicode font and 256 color support in the terminal.
+
 ## Configuration 
 
 This guides through setting up a new BASH environment with these configuration files
@@ -18,7 +20,7 @@ git clone https://github.com/CanyonTurtle/dotfiles.git
 
 ### vim
 
-first, [install Vim Plug](https://github.com/junegunn/vim-plug).
+first, [install Vim Plug](https://github.com/junegunn/vim-plug). Then:
 
 ```bash
 touch ~/.vimrc
@@ -37,8 +39,6 @@ source ~/.vimrc
 follow additional configuration steps on neovim.com to set the default editor to nvim.
 
 ### tmux
-
-note: needs unicode font and 256 color terminal or else it doesn't look good.
 
 ```bash
 cd ~
