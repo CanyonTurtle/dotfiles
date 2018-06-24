@@ -1,8 +1,11 @@
 # Dotfiles
 
 Configuration for vim neovim, and tmux.
-
 To see what configuration is provided, read the configuration files and their inline documetation.
+
+Most of the content of the configuration is not my own; it comes from a mix of boilerplate and configuration setups listed here:
+- [oh my tmux](https://github.com/gpakosz/.tmux)
+- [the best and greatest tmux conf ever](https://gist.github.com/spicycode/1229612)
 
 ## Configuration 
 
