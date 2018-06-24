@@ -9,6 +9,19 @@ Most of the content of the configuration is not my own; it comes from a mix of b
 
 Note: for tmux and vim to look nice, there needs to be unicode font and 256 color support in the terminal.
 
+## Features
+- Vim:
+  - plugin manager
+  - syntax
+  - visual / color scheme
+  - custom mappings
+- tmux
+  - custom look
+  - custom mappings
+- bash
+  - custom aliases
+  - color configuration
+
 ## Configuration 
 
 This guides through setting up a new BASH environment with these configuration files
