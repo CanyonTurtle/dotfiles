@@ -18,6 +18,8 @@ git clone https://github.com/CanyonTurtle/dotfiles.git
 
 ### vim
 
+first, [install Vim Plug](https://github.com/junegunn/vim-plug).
+
 ```bash
 touch ~/.vimrc
 echo "so ~/dotfiles/vimrc.vim" >> ~/.vimrc
