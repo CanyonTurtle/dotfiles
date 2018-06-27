@@ -41,12 +41,12 @@ echo "so ~/dotfiles/vimrc.vim" >> ~/.vimrc
 ```
 ### neovim
 
-do the vim instruction as above, and then add the following to `~/.config/nvim/init.vim`:
+do the vim instruction as above, and then: 
 
-```vimscript
-set runtimepath^=~/.vim runtimepatah+=~/.vim/after
-let &packpath = &runtimepath
-source ~/.vimrc
+```bash
+touch ~/.config/nvim/init.vim
+echo "so ~/dotfiles/nvimrc.vim" >> ~/.config/nvim/init.vim
+
 ```
 
 follow additional configuration steps on neovim.com to set the default editor to nvim.

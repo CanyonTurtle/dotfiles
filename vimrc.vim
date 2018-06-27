@@ -13,6 +13,9 @@ call plug#begin('~/vim/plugged')
 " Standard vim defaults
 Plug 'https://github.com/tpope/vim-sensible'
 
+" surround.vim
+Plug 'tpope/vim-surround'
+
 " vim git stuff
 Plug 'tpope/vim-fugitive'
 
@@ -87,7 +90,10 @@ endif
 
 let g:material_theme_style = 'default'
 let g:material_terminal_italics = 1
-"
+
+"---- Vim Sleuth ----"
+autocmd BufEnter * :Sleuth
+
 "----- Vim Tmux Navigator -----"
 
 " Write all buffers before navigating from Vim to tmux pane
@@ -116,3 +122,5 @@ colorscheme material
 " wildmenu options
 set wildchar=<Tab> wildmenu wildmode=full
 
+" navigate to current dire
+let @+="cd \"" . escape(getcwd(), "\"") . "\""

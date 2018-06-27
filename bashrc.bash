@@ -9,7 +9,7 @@
 
 
 # my aliases
-alias l="ls -la --colors=auto"
+alias l="ls -la"
 alias v="nvim"
 alias r=ranger
 
@@ -50,3 +50,5 @@ function ranger-cd {
 
   # This binds Ctrl-O to ranger-cd:
   bind '"\C-o":"ranger-cd\C-m"'
+
+  alias tmux="env TERM=xterm-256color tmux"
