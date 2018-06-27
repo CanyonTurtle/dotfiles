@@ -13,6 +13,10 @@ alias l="ls -la"
 alias v="nvim"
 alias r=ranger
 
+# git
+alias ga="git add"
+alias gc="git commit"
+
 # set up color when listing directories
 LS_COLORS='ow=01;36;40'
 export LS_COLORS
