@@ -99,6 +99,13 @@ autocmd BufEnter * :Sleuth
 " Write all buffers before navigating from Vim to tmux pane
 let g:tmux_navigator_save_on_switch = 2
 
+"----- Vim Fugitive -----"
+nmap     <Leader>g :Gstatus<CR>gg<c-n>
+nnoremap <Leader>d :Gdiff<CR>
+nnoremap <Leader>w :Gw<CR>
+nnoremap <Leader>a :Gwrite .<CR>
+
+
 " ============== GENERAL SETTINGS ============== "
 
 
@@ -124,3 +131,6 @@ set wildchar=<Tab> wildmenu wildmode=full
 
 " navigate to current dire
 let @+="cd \"" . escape(getcwd(), "\"") . "\""
+
+" search ignore case" 
+set ignorecase
