@@ -46,6 +46,9 @@ Plug 'neutaaaaan/iosvkem'
 Plug 'https://github.com/kristijanhusak/vim-hybrid-material'
 Plug 'kaicataldo/material.vim'
 
+" commenting
+Plug 'scrooloose/nerdcommenter'
+
 call plug#end()
 
 
@@ -105,6 +108,9 @@ nnoremap <Leader>d :Gdiff<CR>
 nnoremap <Leader>w :Gw<CR>
 nnoremap <Leader>a :Gwrite .<CR>
 
+" ----- Nerd Commenter -----"
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
 
 " ============== GENERAL SETTINGS ============== "
 
@@ -134,3 +140,18 @@ let @+="cd \"" . escape(getcwd(), "\"") . "\""
 
 " search ignore case" 
 set ignorecase
+
+" directory netrw browser
+" let g:netrw_banner = 0
+" let g:netrw_liststyle = 3
+" let g:netrw_browse_split = 4
+" let g:netrw_altv = 1
+" let g:netrw_winsize = 25
+" augroup ProjectDrawer
+  " autocmd!
+  " autocmd VimEnter * :Vexplore
+" augroup END
+
+let g:netrw_browse_split = 4
+
+" last buffer
