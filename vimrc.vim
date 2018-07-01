@@ -43,8 +43,20 @@ Plug 'Yggdroot/indentLine'
 
 " Color schemes
 Plug 'neutaaaaan/iosvkem'
-Plug 'https://github.com/kristijanhusak/vim-hybrid-material'
+" Plug 'https://github.com/kristijanhusak/vim-hybrid-material'
 Plug 'kaicataldo/material.vim'
+
+" Deoplete
+if has('nvim')
+	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+	Plug 'Shougo/deoplete.nvim'
+	Plug 'roxma/nvim-yarp'
+	Plug 'roxma/vim-hug-neovim-rpc'
+endif
+
+" Deoplete for javascript
+Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
 
 call plug#end()
 
@@ -52,6 +64,17 @@ call plug#end()
 " ============ PLUGIN FIXES =========== "
 
 
+"----- Deoplete -----
+let g:deoplete#enable_at_startup = 1
+if !exists('g:deoplete#omni#input_patterns')
+	let g:deoplete#omni#input_patterns = {}
+endif
+" let g:deoplete#disable_auto_complete = 1
+autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+" deoplete tab-complete
+inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+" tern
+autocmd FileType javascript nnoremap <silent> <buffer> gb :TernDef<CR>
 
 "----- fuzzy finder--------
 
@@ -64,9 +87,9 @@ let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|\.git'
 "------ hybrid material -------
 
 " font fixes
-let g:enable_bold_font = 1
+" let g:enable_bold_font = 1
 "let g:enable_italic_font = 1
-let g:hybrid_transparent_background = 1
+" let g:hybrid_transparent_background = 1
 
 " ----- material ------
 "
@@ -89,7 +112,7 @@ if (has("termguicolors"))
 endif
 
 let g:material_theme_style = 'default'
-let g:material_terminal_italics = 1
+" let g:material_terminal_italics = 1
 
 "---- Vim Sleuth ----"
 autocmd BufEnter * :Sleuth
@@ -124,3 +147,12 @@ set wildchar=<Tab> wildmenu wildmode=full
 
 " navigate to current dire
 let @+="cd \"" . escape(getcwd(), "\"") . "\""
+
+" windows fix for terminal disabling background color erase
+" set t_ut=
+" set t-Co=256
+"
+
+noremap <C-o>  :tabe .<CR> <bar> :Ranger<CR>
+nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
+
