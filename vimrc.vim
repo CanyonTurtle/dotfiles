@@ -43,11 +43,26 @@ Plug 'Yggdroot/indentLine'
 
 " Color schemes
 Plug 'neutaaaaan/iosvkem'
-Plug 'https://github.com/kristijanhusak/vim-hybrid-material'
+" Plug 'https://github.com/kristijanhusak/vim-hybrid-material'
 Plug 'kaicataldo/material.vim'
 
 " commenting
 Plug 'scrooloose/nerdcommenter'
+
+" Deoplete
+" if has('nvim')
+" 	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" else
+" 	Plug 'Shougo/deoplete.nvim'
+" 	Plug 'roxma/nvim-yarp'
+" 	Plug 'roxma/vim-hug-neovim-rpc'
+" endif
+
+" Deoplete for javascript
+" Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
+
+" buffers in lines
+Plug 'bling/vim-bufferline'
 
 call plug#end()
 
@@ -55,6 +70,17 @@ call plug#end()
 " ============ PLUGIN FIXES =========== "
 
 
+"----- Deoplete -----
+let g:deoplete#enable_at_startup = 1
+if !exists('g:deoplete#omni#input_patterns')
+	let g:deoplete#omni#input_patterns = {}
+endif
+" let g:deoplete#disable_auto_complete = 1
+autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+" deoplete tab-complete
+inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+" tern
+autocmd FileType javascript nnoremap <silent> <buffer> gb :TernDef<CR>
 
 "----- fuzzy finder--------
 
@@ -67,9 +93,9 @@ let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|\.git'
 "------ hybrid material -------
 
 " font fixes
-let g:enable_bold_font = 1
+" let g:enable_bold_font = 1
 "let g:enable_italic_font = 1
-let g:hybrid_transparent_background = 1
+" let g:hybrid_transparent_background = 1
 
 " ----- material ------
 "
@@ -90,6 +116,7 @@ endif
 if (has("termguicolors"))
 	set termguicolors
 endif
+
 " themes are default, dark, & palenight
 let g:material_theme_style = 'default' 
 let g:material_terminal_italics = 0
@@ -154,8 +181,33 @@ set ignorecase
 
 let g:netrw_browse_split = 4
 
-" change directory
-nmap <leader>cd :cd %:p:h<CR>:pwd<CR>
+" windows fix for terminal disabling background color erase
+" set t_ut=
+" set t-Co=256
+"
 
-" open Ranger in new window and change dirs to the new directory
-nnoremap <silent> <C-o> :tabe .<CR> <bar> :Ranger<CR>
+" open ranger buffer in new tab (I.E. like a workspace)
+noremap <C-k><C-o>  :tabe .<CR> <bar> :Ranger<CR>
+" open ranger buffer (I.e. like opening regular file)
+noremap <C-o> :Ranger<CR>
+
+" change directory to the current file
+nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
+
+" prepare buffers to easily switch to one
+nnoremap <Leader>b :ls<CR>:b<Space>
+
+" faster reaction time to commands, but harder to enter
+set timeoutlen=200
+
+" switch buffers insanely fast using tab/number
+noremap <tab>1 :b1<CR>
+noremap <tab>2 :b2<CR>
+noremap <tab>3 :b3<CR>
+noremap <tab>4 :b4<CR>
+noremap <tab>5 :b5<CR>
+noremap <tab>6 :b6<CR>
+noremap <tab>7 :b7<CR>
+noremap <tab>8 :b8<CR>
+noremap <tab>9 :b9<CR>
+set hidden
