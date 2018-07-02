@@ -47,16 +47,19 @@ Plug 'neutaaaaan/iosvkem'
 Plug 'kaicataldo/material.vim'
 
 " Deoplete
-if has('nvim')
-	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-	Plug 'Shougo/deoplete.nvim'
-	Plug 'roxma/nvim-yarp'
-	Plug 'roxma/vim-hug-neovim-rpc'
-endif
+" if has('nvim')
+" 	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" else
+" 	Plug 'Shougo/deoplete.nvim'
+" 	Plug 'roxma/nvim-yarp'
+" 	Plug 'roxma/vim-hug-neovim-rpc'
+" endif
 
 " Deoplete for javascript
-Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
+" Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
+
+" buffers in lines
+Plug 'bling/vim-bufferline'
 
 call plug#end()
 
@@ -153,6 +156,18 @@ let @+="cd \"" . escape(getcwd(), "\"") . "\""
 " set t-Co=256
 "
 
-noremap <C-o>  :tabe .<CR> <bar> :Ranger<CR>
+" open ranger buffer in new tab (I.E. like a workspace)
+noremap <C-k><C-o>  :tabe .<CR> <bar> :Ranger<CR>
+" open ranger buffer (I.e. like opening regular file)
+noremap <C-o> :Ranger<CR>
+
+" change directory to the current file
 nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
 
+" prepare buffers to easily switch to one
+nnoremap <Leader>b :ls<CR>:b<Space>
+
+" faster reaction time to commands, but harder to enter
+set timeoutlen=200
+
+set hidden
