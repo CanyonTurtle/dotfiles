@@ -170,4 +170,14 @@ nnoremap <Leader>b :ls<CR>:b<Space>
 " faster reaction time to commands, but harder to enter
 set timeoutlen=200
 
+" switch buffers insanely fast using tab/number
+noremap <tab>1 :b1<CR>
+noremap <tab>2 :b2<CR>
+noremap <tab>3 :b3<CR>
+noremap <tab>4 :b4<CR>
+noremap <tab>5 :b5<CR>
+noremap <tab>6 :b6<CR>
+noremap <tab>7 :b7<CR>
+noremap <tab>8 :b8<CR>
+noremap <tab>9 :b9<CR>
 set hidden
