@@ -1,6 +1,6 @@
 # Notes
 
-These are for myself, remembering all the commands I am using.
+These are for myself, remembering all the commands / language tips I am using.
 
 ## Bash
 ```
@@ -11,6 +11,9 @@ grep -r -l 'match' *filenames with matching content -recursive*
 
 #### Normal
 ```
+ma *mark at a*
+'a jump to a (OVERPOWERED)
+% *jump to opposite brace*
 "ayy *use the a register to store line*
 yy *use the " register to store line*
 shift+I *column insert while in visual block mode*
@@ -36,4 +39,30 @@ cs'" *surround plugin*
 ```
 C-F = leader
 leader + alt + 1 *even layout*
+```
+
+## Declaring function pointers
+```
+arr    //arr 
+arr [] //is an array (so index it)
+* arr [] //of pointers (so dereference them)
+(* arr [])() //to functions taking nothing (so call them with ())
+void (* arr [])() //returning void 
+so your answer is
+
+void (* arr [])() = {};
+But naturally, this is a bad practice, just use typedefs :)
+
+Extra: Wonder how to declare an array of 3 pointers to functions taking int and returning a pointer to an array of 4 pointers to functions taking double and returning char? (how cool is that, huh? :))
+
+arr //arr
+arr [3] //is an array of 3 (index it)
+* arr [3] //pointers
+(* arr [3])(int) //to functions taking int (call it) and
+*(* arr [3])(int) //returning a pointer (dereference it)
+(*(* arr [3])(int))[4] //to an array of 4
+*(*(* arr [3])(int))[4] //pointers
+(*(*(* arr [3])(int))[4])(double) //to functions taking double and
+char  (*(*(* arr [3])(int))[4])(double) //returning char
+-Armen Tsirunyan, StackOverflow
 ```

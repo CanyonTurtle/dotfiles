@@ -90,9 +90,9 @@ endif
 if (has("termguicolors"))
 	set termguicolors
 endif
-
-let g:material_theme_style = 'default'
-let g:material_terminal_italics = 1
+" themes are default, dark, & palenight
+let g:material_theme_style = 'default' 
+let g:material_terminal_italics = 0
 
 "---- Vim Sleuth ----"
 autocmd BufEnter * :Sleuth
@@ -154,4 +154,8 @@ set ignorecase
 
 let g:netrw_browse_split = 4
 
-" last buffer
+" change directory
+nmap <leader>cd :cd %:p:h<CR>:pwd<CR>
+
+" open Ranger in new window and change dirs to the new directory
+nnoremap <silent> <C-o> :tabe .<CR> <bar> :Ranger<CR>

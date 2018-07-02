@@ -12,6 +12,7 @@
 alias l="ls -la"
 alias v="nvim"
 alias r=ranger
+alias pm="pros make clean; pros make"
 
 # git
 alias ga="git add"
