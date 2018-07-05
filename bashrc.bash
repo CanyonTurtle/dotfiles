@@ -13,6 +13,7 @@ alias l="ls -la"
 alias v="nvim"
 alias r=ranger
 
+alias ccc="catkin_make clean; catkin_make install"
 alias pm="pros make clean; pros make"
 
 # git

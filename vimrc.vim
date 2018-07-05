@@ -45,6 +45,7 @@ Plug 'Yggdroot/indentLine'
 Plug 'neutaaaaan/iosvkem'
 " Plug 'https://github.com/kristijanhusak/vim-hybrid-material'
 Plug 'kaicataldo/material.vim'
+Plug 'dikiaap/minimalist'
 
 " commenting
 Plug 'scrooloose/nerdcommenter'
@@ -58,11 +59,17 @@ Plug 'scrooloose/nerdcommenter'
 " 	Plug 'roxma/vim-hug-neovim-rpc'
 " endif
 
+Plug 'Shougo/deoplete.nvim'
+Plug 'zchee/deoplete-clang'
+
 " Deoplete for javascript
 " Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
 
 " buffers in lines
 Plug 'bling/vim-bufferline'
+
+" rainbow parenthesis
+Plug 'luochen1990/rainbow'
 
 call plug#end()
 
@@ -118,7 +125,7 @@ if (has("termguicolors"))
 endif
 
 " themes are default, dark, & palenight
-let g:material_theme_style = 'default' 
+let g:material_theme_style = 'dark' 
 let g:material_terminal_italics = 0
 
 "---- Vim Sleuth ----"
@@ -139,6 +146,13 @@ nnoremap <Leader>a :Gwrite .<CR>
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
 
+" ----- Rainbow Parenthesis -----"
+let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
+
+" ----- clang deoplete -----"
+let g:deoplete#sources#clang#libclang_path = '/usr/lib/x86_64-linux-gnu/libclang.so'
+let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
+
 " ============== GENERAL SETTINGS ============== "
 
 
@@ -151,7 +165,12 @@ nmap ; :
 " coloring
 syntax enable
 set background=dark
-colorscheme material
+colorscheme material " material
+
+" no colors
+" syntax off
+" set nohlsearch
+" set t_Co=0
 
 " Fixing indentation
 "set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
