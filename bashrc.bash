@@ -59,3 +59,5 @@ function ranger-cd {
 
   # This binds Ctrl-O to ranger-cd:
   bind '"\C-o":"ranger-cd\C-m"'
+  bind '"\C-p":"nvim -c CtrlP\C-m"'
+

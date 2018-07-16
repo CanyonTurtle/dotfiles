@@ -1,8 +1,5 @@
 
 
-
-
-
 " ================= PLUGIN INSTALLATION ================ "
 
 
@@ -51,13 +48,13 @@ Plug 'dikiaap/minimalist'
 Plug 'scrooloose/nerdcommenter'
 
 " Deoplete
-" if has('nvim')
-" 	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" else
-" 	Plug 'Shougo/deoplete.nvim'
-" 	Plug 'roxma/nvim-yarp'
-" 	Plug 'roxma/vim-hug-neovim-rpc'
-" endif
+if has('nvim')
+	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+els
+	Plug 'Shougo/deoplete.nvim'
+	Plug 'roxma/nvim-yarp'
+	Plug 'roxma/vim-hug-neovim-rpc'
+endif
 
 Plug 'Shougo/deoplete.nvim'
 Plug 'zchee/deoplete-clang'
@@ -67,6 +64,9 @@ Plug 'zchee/deoplete-clang'
 
 " buffers in lines
 Plug 'bling/vim-bufferline'
+
+" NERD tree
+Plug 'scrooloose/nerdtree'
 
 " rainbow parenthesis
 Plug 'luochen1990/rainbow'
@@ -146,7 +146,18 @@ nnoremap <Leader>a :Gwrite .<CR>
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
 
+" ----- NERDTree ------ " 
+" opening hotkey
+map <C-n> :NERDTreeToggle<CR>
+
+" close if only one remaining
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" alternate arrows
+" let g:NERDTreeDirArrowExpandable = '>'
+" let g:NERDTreeDirArrowCollapsible = '-'
 " ----- Rainbow Parenthesis -----"
+"
 let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
 
 " ----- clang deoplete -----"
@@ -207,6 +218,7 @@ let g:netrw_browse_split = 4
 
 " open ranger buffer in new tab (I.E. like a workspace)
 noremap <C-k><C-o>  :tabe .<CR> <bar> :Ranger<CR>
+
 " open ranger buffer (I.e. like opening regular file)
 noremap <C-o> :Ranger<CR>
 
@@ -233,3 +245,11 @@ noremap <tab>9 :b9<CR>
 " cycle through buffers
 noremap gb :bnext<CR>
 set hidden
+
+" dank vs code integrated terminal
+noremap <C-t> :sp<CR> <bar> :wincmd r<CR> <bar> :terminal<CR> <bar> :resize 15<CR> <bar> ggi
+
+" nerdtree on start
+autocmd vimenter * NERDTree
+autocmd vimenter * wincmd l
+
