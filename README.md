@@ -66,3 +66,4 @@ echo "source-file ~/dotfiles/tmux.conf" >> ~/.tmux.conf.local
 touch ~/.bashrc
 echo "source ~/dotfiles/bashrc.bash" >> ~/.bashrc
 ```
+
