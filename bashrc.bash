@@ -15,6 +15,7 @@ alias r=ranger
 
 alias ccc="catkin_make clean; catkin_make install"
 alias pm="pros make clean; pros make"
+alias roslibregen="rm -rf ../include/ros_lib; rosrun rosserial_vex_cortex make_libraries.py ."
 
 # git
 alias ga="git add"

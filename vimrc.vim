@@ -125,7 +125,7 @@ if (has("termguicolors"))
 endif
 
 " themes are default, dark, & palenight
-let g:material_theme_style = 'dark' 
+let g:material_theme_style = 'black' 
 let g:material_terminal_italics = 0
 
 "---- Vim Sleuth ----"
@@ -229,4 +229,7 @@ noremap <tab>6 :b6<CR>
 noremap <tab>7 :b7<CR>
 noremap <tab>8 :b8<CR>
 noremap <tab>9 :b9<CR>
+
+" cycle through buffers
+noremap gb :bnext<CR>
 set hidden
