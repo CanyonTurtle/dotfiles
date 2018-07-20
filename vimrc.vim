@@ -47,6 +47,9 @@ Plug 'dikiaap/minimalist'
 " commenting
 Plug 'scrooloose/nerdcommenter'
 
+" Tabs
+Plug 'gcmt/taboo.vim'
+
 " Deoplete
 if has('nvim')
 	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -57,6 +60,7 @@ els
 endif
 
 Plug 'Shougo/deoplete.nvim'
+
 Plug 'zchee/deoplete-clang'
 
 " Deoplete for javascript
@@ -70,6 +74,9 @@ Plug 'scrooloose/nerdtree'
 
 " rainbow parenthesis
 Plug 'luochen1990/rainbow'
+ 
+" minimal mode
+Plug 'junegunn/goyo.vim'
 
 call plug#end()
 
@@ -82,10 +89,13 @@ let g:deoplete#enable_at_startup = 1
 if !exists('g:deoplete#omni#input_patterns')
 	let g:deoplete#omni#input_patterns = {}
 endif
+
 " let g:deoplete#disable_auto_complete = 1
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+
 " deoplete tab-complete
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+
 " tern
 autocmd FileType javascript nnoremap <silent> <buffer> gb :TernDef<CR>
 
@@ -147,17 +157,16 @@ nnoremap <Leader>a :Gwrite .<CR>
 let g:NERDSpaceDelims = 1
 
 " ----- NERDTree ------ " 
+
 " opening hotkey
-map <C-n> :NERDTreeToggle<CR>
+let NERDTreeShowBookmarks=1
+let NERDTreeHijackNetrw=1
 
 " close if only one remaining
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-" alternate arrows
-" let g:NERDTreeDirArrowExpandable = '>'
-" let g:NERDTreeDirArrowCollapsible = '-'
 " ----- Rainbow Parenthesis -----"
-"
+
 let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
 
 " ----- clang deoplete -----"
@@ -166,22 +175,15 @@ let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
 
 " ============== GENERAL SETTINGS ============== "
 
-
-
-
-" keybinds
+" favorite keybinds
 inoremap jk <ESC>
-nmap ; :
+noremap ; :
+noremap : ;
 
 " coloring
 syntax enable
 set background=dark
-colorscheme material " material
-
-" no colors
-" syntax off
-" set nohlsearch
-" set t_Co=0
+colorscheme material
 
 " Fixing indentation
 "set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
@@ -192,38 +194,11 @@ colorscheme material " material
 " wildmenu options
 set wildchar=<Tab> wildmenu wildmode=full
 
-" navigate to current dire
-let @+="cd \"" . escape(getcwd(), "\"") . "\""
-
 " search ignore case" 
 set ignorecase
 
-" directory netrw browser
-" let g:netrw_banner = 0
-" let g:netrw_liststyle = 3
-" let g:netrw_browse_split = 4
-" let g:netrw_altv = 1
-" let g:netrw_winsize = 25
-" augroup ProjectDrawer
-  " autocmd!
-  " autocmd VimEnter * :Vexplore
-" augroup END
-
-let g:netrw_browse_split = 4
-
-" windows fix for terminal disabling background color erase
-" set t_ut=
-" set t-Co=256
-"
-
-" open ranger buffer in new tab (I.E. like a workspace)
-noremap <C-k><C-o>  :tabe .<CR> <bar> :Ranger<CR>
-
-" open ranger buffer (I.e. like opening regular file)
-noremap <C-o> :Ranger<CR>
-
 " change directory to the current file
-nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
+nnoremap <leader>c :cd %:p:h<CR>:pwd<CR>
 
 " prepare buffers to easily switch to one
 nnoremap <Leader>b :ls<CR>:b<Space>
@@ -232,24 +207,22 @@ nnoremap <Leader>b :ls<CR>:b<Space>
 set timeoutlen=200
 
 " switch buffers insanely fast using tab/number
-noremap <tab>1 :b1<CR>
-noremap <tab>2 :b2<CR>
-noremap <tab>3 :b3<CR>
-noremap <tab>4 :b4<CR>
-noremap <tab>5 :b5<CR>
-noremap <tab>6 :b6<CR>
-noremap <tab>7 :b7<CR>
-noremap <tab>8 :b8<CR>
-noremap <tab>9 :b9<CR>
 
 " cycle through buffers
 noremap gb :bnext<CR>
 set hidden
 
-" dank vs code integrated terminal
-noremap <C-t> :sp<CR> <bar> :wincmd r<CR> <bar> :terminal<CR> <bar> :resize 15<CR> <bar> ggi
-
 " nerdtree on start
-autocmd vimenter * NERDTree
-autocmd vimenter * wincmd l
+" autocmd vimenter * NERDTree
 
+" nerdtree change dir.
+
+" Distraction free mode.
+noremap <leader>z :Goyo 120<CR>
+
+" best buffer switching
+" function CannonSB(bufToGo)
+" 	execute "b" . a:bufToGo
+" endfunction
+
+noremap <Tab> :<C-U>execute "buffer ".v:count<CR>
