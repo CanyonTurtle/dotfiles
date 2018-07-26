@@ -27,8 +27,7 @@ Note: for tmux and vim to look nice, there needs to be unicode font and 256 colo
 This guides through setting up a new BASH environment with these configuration files
 
 ```bash
-cd ~
-git clone https://github.com/CanyonTurtle/dotfiles.git
+cd ~; git clone https://github.com/CanyonTurtle/dotfiles.git .dotfiles
 ```
 
 ### vim
@@ -36,17 +35,14 @@ git clone https://github.com/CanyonTurtle/dotfiles.git
 first, [install Vim Plug](https://github.com/junegunn/vim-plug). Then:
 
 ```bash
-touch ~/.vimrc
-echo "so ~/dotfiles/vimrc.vim" >> ~/.vimrc
+touch ~/.vimrc; echo "so ~/.dotfiles/vimrc.vim" >> ~/.vimrc
 ```
 ### neovim
 
 do the vim instruction as above, and then: 
 
 ```bash
-touch ~/.config/nvim/init.vim
-echo "so ~/dotfiles/nvimrc.vim" >> ~/.config/nvim/init.vim
-
+touch ~/.config/nvim/init.vim; echo "so ~/.dotfiles/nvimrc.vim" >> ~/.config/nvim/init.vim
 ```
 
 follow additional configuration steps on neovim.com to set the default editor to nvim.
@@ -54,16 +50,15 @@ follow additional configuration steps on neovim.com to set the default editor to
 ### tmux
 
 ```bash
-cd ~
-git clone https://github.com/gpakosz/.tmux.git
-ln -s -f .tmux/.tmux.conf
-touch .tmux.conf.local
-echo "source-file ~/dotfiles/tmux.conf" >> ~/.tmux.conf.local
+cd ~ \
+git clone https://github.com/gpakosz/.tmux.git \
+mv .tmux/.tmux.conf . \
+mv .tmux/.tmux.conf.local . \
+echo "source-file ~/.dotfiles/tmux.conf" >> ~/.tmux.conf.local
 ```
 
 ### bash
 ```bash
-touch ~/.bashrc
-echo "source ~/dotfiles/bashrc.bash" >> ~/.bashrc
+touch ~/.bashrc; echo "source ~/.dotfiles/bashrc.bash" >> ~/.bashrc
 ```
 
