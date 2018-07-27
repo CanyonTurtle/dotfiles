@@ -41,7 +41,7 @@ Plug 'Yggdroot/indentLine'
 " Color schemes
 Plug 'neutaaaaan/iosvkem'
 " Plug 'https://github.com/kristijanhusak/vim-hybrid-material'
-Plug 'kaicataldo/material.vim'
+Plug 'CanyonTurtle/material.vim'
 Plug 'dikiaap/minimalist'
 
 " commenting
