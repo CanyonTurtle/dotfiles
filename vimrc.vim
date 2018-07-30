@@ -41,7 +41,7 @@ Plug 'Yggdroot/indentLine'
 " Color schemes
 Plug 'neutaaaaan/iosvkem'
 " Plug 'https://github.com/kristijanhusak/vim-hybrid-material'
-Plug 'kaicataldo/material.vim'
+Plug 'CanyonTurtle/material.vim'
 Plug 'dikiaap/minimalist'
 
 " commenting
@@ -147,7 +147,7 @@ autocmd BufEnter * :Sleuth
 let g:tmux_navigator_save_on_switch = 2
 
 "----- Vim Fugitive -----"
-nmap     <Leader>g :Gstatus<CR>gg<c-n>
+nnoremap <Leader>g :Gstatus<CR>gg<c-n>
 nnoremap <Leader>d :Gdiff<CR>
 nnoremap <Leader>w :Gw<CR>
 nnoremap <Leader>a :Gwrite .<CR>
