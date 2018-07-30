@@ -61,3 +61,7 @@ function ranger-cd {
   bind '"\C-o":"ranger-cd\C-m"'
   bind '"\C-p":"nvim -c CtrlP\C-m"'
 
+# use vim because why not
+bind '";q\C-m":"exit\C-m"'
+bind '";e.\C-m":"nvim .\C-m"'
+bind '";e\C-m":"nvim\C-m"'

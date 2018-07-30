@@ -61,7 +61,7 @@ endif
 
 Plug 'Shougo/deoplete.nvim'
 
-Plug 'zchee/deoplete-clang'
+" Plug 'zchee/deoplete-clang'
 
 " Deoplete for javascript
 " Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
@@ -105,7 +105,7 @@ autocmd FileType javascript nnoremap <silent> <buffer> gb :TernDef<CR>
 let g:ctrlp_show_hidden = 1
 
 " ignore directories where I expect lots of junk
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|\.git'
+let g:ctrlp_custom_ignore = '.exe\|bin\|node_modules\|DS_Store\|\.git'
 
 "------ hybrid material -------
 
@@ -177,6 +177,7 @@ let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
 
 " favorite keybinds
 inoremap jk <ESC>
+inoremap jl <ESC>:w<CR>
 noremap ; :
 noremap : ;
 
