@@ -3,9 +3,14 @@
 " ================= PLUGIN INSTALLATION ================ "
 
 
-
-
 call plug#begin('~/vim/plugged')
+
+" library of vimscripts
+Plug 'xolox/vim-misc'
+
+" ctags generation
+Plug 'xolox/vim-easytags'
+Plug 'majutsushi/tagbar'
 
 " Standard vim defaults
 Plug 'https://github.com/tpope/vim-sensible'
@@ -26,9 +31,6 @@ Plug 'rbgrouleff/bclose.vim'
 " tmux and vim navigation
 Plug 'christoomey/vim-tmux-navigator'
 
-" Auto-completion (haven't figured out yet)
-" Plug 'Valloric/YouCompleteMe'
-
 " Syntax support for lots of languages
 Plug 'sheerun/vim-polyglot'
 
@@ -40,9 +42,9 @@ Plug 'Yggdroot/indentLine'
 
 " Color schemes
 Plug 'neutaaaaan/iosvkem'
-" Plug 'https://github.com/kristijanhusak/vim-hybrid-material'
 Plug 'CanyonTurtle/material.vim'
 Plug 'dikiaap/minimalist'
+Plug 'hzchirs/vim-material'
 
 " commenting
 Plug 'scrooloose/nerdcommenter'
@@ -53,12 +55,11 @@ Plug 'gcmt/taboo.vim'
 " Deoplete
 if has('nvim')
 	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-els
+else
 	Plug 'Shougo/deoplete.nvim'
 	Plug 'roxma/nvim-yarp'
 	Plug 'roxma/vim-hug-neovim-rpc'
 endif
-
 Plug 'Shougo/deoplete.nvim'
 
 " Plug 'zchee/deoplete-clang'
@@ -67,22 +68,27 @@ Plug 'Shougo/deoplete.nvim'
 " Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
 
 " buffers in lines
-Plug 'bling/vim-bufferline'
+" Plug 'bling/vim-bufferline'
 
 " NERD tree
 Plug 'scrooloose/nerdtree'
 
 " rainbow parenthesis
 Plug 'luochen1990/rainbow'
- 
+
 " minimal mode
 Plug 'junegunn/goyo.vim'
 
+" tmux shares airline theme
+Plug 'edkolev/tmuxline.vim'
+
+" airline
+Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline'
+
 call plug#end()
 
-
 " ============ PLUGIN FIXES =========== "
-
 
 "----- Deoplete -----
 let g:deoplete#enable_at_startup = 1
@@ -134,8 +140,8 @@ if (has("termguicolors"))
 	set termguicolors
 endif
 
-" themes are default, dark, & palenight
-let g:material_theme_style = 'black' 
+" themes are default, dark, palenight, and black
+let g:material_theme_style = 'black'
 let g:material_terminal_italics = 0
 
 "---- Vim Sleuth ----"
@@ -156,7 +162,7 @@ nnoremap <Leader>a :Gwrite .<CR>
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
 
-" ----- NERDTree ------ " 
+" ----- NERDTree ------ "
 
 " opening hotkey
 let NERDTreeShowBookmarks=1
@@ -173,6 +179,9 @@ let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
 let g:deoplete#sources#clang#libclang_path = '/usr/lib/x86_64-linux-gnu/libclang.so'
 let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
 
+" ----- Airline ------ "
+let g:airline_powerline_fonts = 1
+
 " ============== GENERAL SETTINGS ============== "
 
 " favorite keybinds
@@ -182,9 +191,12 @@ noremap ; :
 noremap : ;
 
 " coloring
+" set t_Co=256
 syntax enable
 set background=dark
-colorscheme material
+let g:material_style='default'
+let g:airline_theme='vice'
+colorscheme vim-material
 
 " Fixing indentation
 "set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
@@ -195,7 +207,7 @@ colorscheme material
 " wildmenu options
 set wildchar=<Tab> wildmenu wildmode=full
 
-" search ignore case" 
+" search ignore case
 set ignorecase
 
 " change directory to the current file
@@ -227,3 +239,15 @@ noremap <leader>z :Goyo 120<CR>
 " endfunction
 
 noremap <Tab> :<C-U>execute "buffer ".v:count<CR>
+
+" open a nerdtree buffer intended as the folder opener.
+noremap <C-o> :e ~/<CR>/Bookmarks<CR>j:noh<CR>^
+command! Ctrlo :norm <C-o>
+
+noremap <leader>m :make<CR>
+noremap <M-l> :tabnext<CR>
+noremap <M-h> :tabprevious<CR>
+
+noremap <F8> :TagbarToggle<CR>
+
+let g:airline#extensions#tmuxline#enabled = 1

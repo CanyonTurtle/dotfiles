@@ -45,9 +45,10 @@ export LS_COLORS
 # use vim as editor
 export EDITOR=nvim
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# uncomment for use of node
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 alias vr="v -c Ranger"
 # Compatible with ranger 1.4.2 through 1.7.*
@@ -71,11 +72,16 @@ function ranger-cd {
     rm -f -- "$tempfile"
   }
 
-  # This binds Ctrl-O to ranger-cd:
-  bind '"\C-o":"ranger-cd\C-m"'
-  bind '"\C-p":"nvim -c CtrlP\C-m"'
+# This binds Ctrl-O to ranger-cd:
+# bind '"\C-o":"ranger-cd\C-m"'
+# bind '"\C-p":"nvim -c CtrlP\C-m"'
 
 # use vim because why not
 bind '";q\C-m":"exit\C-m"'
 bind '";e.\C-m":"nvim .\C-m"'
 bind '";e\C-m":"nvim\C-m"'
+bind '"\C-o":"nvim -c Ctrlo\C-m"'
+
+PS1='(⌐■_■) \w$ '
+
+unset color_prompt force_color_prompt
