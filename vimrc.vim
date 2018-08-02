@@ -50,7 +50,7 @@ Plug 'hzchirs/vim-material'
 Plug 'scrooloose/nerdcommenter'
 
 " Tabs
-Plug 'gcmt/taboo.vim'
+" Plug 'gcmt/taboo.vim'
 
 " Deoplete
 if has('nvim')
@@ -80,7 +80,10 @@ Plug 'luochen1990/rainbow'
 Plug 'junegunn/goyo.vim'
 
 " tmux shares airline theme
-Plug 'edkolev/tmuxline.vim'
+" Plug 'edkolev/tmuxline.vim'
+
+" git in side.
+Plug 'airblade/vim-gitgutter'
 
 " airline
 Plug 'vim-airline/vim-airline-themes'
@@ -181,6 +184,9 @@ let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
 
 " ----- Airline ------ "
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#tmuxline#enabled = 1
+let g:airline#extensions#tabline#enabled = 1
+
 
 " ============== GENERAL SETTINGS ============== "
 
@@ -194,8 +200,8 @@ noremap : ;
 " set t_Co=256
 syntax enable
 set background=dark
-let g:material_style='default'
-let g:airline_theme='vice'
+let g:material_style='palenight'
+let g:airline_theme='atomic'
 colorscheme vim-material
 
 " Fixing indentation
@@ -250,4 +256,3 @@ noremap <M-h> :tabprevious<CR>
 
 noremap <F8> :TagbarToggle<CR>
 
-let g:airline#extensions#tmuxline#enabled = 1
