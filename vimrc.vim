@@ -5,6 +5,9 @@
 
 call plug#begin('~/vim/plugged')
 
+" Standard vim defaults
+Plug 'https://github.com/tpope/vim-sensible'
+
 " library of vimscripts
 Plug 'xolox/vim-misc'
 
@@ -12,21 +15,19 @@ Plug 'xolox/vim-misc'
 Plug 'xolox/vim-easytags'
 Plug 'majutsushi/tagbar'
 
-" Standard vim defaults
-Plug 'https://github.com/tpope/vim-sensible'
-
 " surround.vim
 Plug 'tpope/vim-surround'
 
 " vim git stuff
-Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive' " git control in vim
+Plug 'airblade/vim-gitgutter' " git in side.
 
 " fuzzy finder
 Plug 'ctrlpvim/ctrlp.vim'
 
 " the 'ranger' file browser integration
-Plug 'francoiscabrol/ranger.vim'
-Plug 'rbgrouleff/bclose.vim'
+" Plug 'francoiscabrol/ranger.vim'
+" Plug 'rbgrouleff/bclose.vim'
 
 " tmux and vim navigation
 Plug 'christoomey/vim-tmux-navigator'
@@ -41,9 +42,9 @@ Plug 'https://github.com/tpope/vim-sleuth'
 Plug 'Yggdroot/indentLine'
 
 " Color schemes
-Plug 'neutaaaaan/iosvkem'
-Plug 'CanyonTurtle/material.vim'
-Plug 'dikiaap/minimalist'
+" Plug 'neutaaaaan/iosvkem'
+" Plug 'CanyonTurtle/material.vim'
+" Plug 'dikiaap/minimalist'
 Plug 'hzchirs/vim-material'
 
 " commenting
@@ -82,16 +83,20 @@ Plug 'junegunn/goyo.vim'
 " tmux shares airline theme
 " Plug 'edkolev/tmuxline.vim'
 
-" git in side.
-Plug 'airblade/vim-gitgutter'
-
 " airline
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-airline/vim-airline'
 
 call plug#end()
 
-" ============ PLUGIN FIXES =========== "
+
+
+
+
+" ============ PLUGIN SETTINGS AND MAPPINGS =========== "
+
+
+
 
 "----- Deoplete -----
 let g:deoplete#enable_at_startup = 1
@@ -116,15 +121,6 @@ let g:ctrlp_show_hidden = 1
 " ignore directories where I expect lots of junk
 let g:ctrlp_custom_ignore = '.exe\|bin\|node_modules\|DS_Store\|\.git'
 
-"------ hybrid material -------
-
-" font fixes
-" let g:enable_bold_font = 1
-"let g:enable_italic_font = 1
-" let g:hybrid_transparent_background = 1
-
-" ----- material ------
-"
 if (has("nvim"))
 	"For Neovim 0.1.3 and 0.1.4 <
 	"https://github.com/neovim/neovim/pull/2198 >
@@ -171,6 +167,13 @@ let g:NERDSpaceDelims = 1
 let NERDTreeShowBookmarks=1
 let NERDTreeHijackNetrw=1
 
+" open a nerdtree buffer intended as the folder opener.
+noremap <C-o> :e ~/<CR>/Bookmarks<CR>j:noh<CR>^
+command! Ctrlo :norm <C-o>
+
+" nerdtree on start
+" autocmd vimenter * NERDTree
+
 " close if only one remaining
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
@@ -178,19 +181,36 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 
 let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
 
-" ----- clang deoplete -----"
+" ----- clang deoplete ----- "
 let g:deoplete#sources#clang#libclang_path = '/usr/lib/x86_64-linux-gnu/libclang.so'
 let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
 
 " ----- Airline ------ "
 let g:airline_powerline_fonts = 1
-let g:airline#extensions#tmuxline#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme='atomic'
+
+" let g:airline#extensions#tmuxline#enabled = 1
+
+" ----- Material ----- "
+let g:material_style='palenight'
 
 
-" ============== GENERAL SETTINGS ============== "
+" ----- Tagbar ----- "
+noremap <F8> :TagbarToggle<CR>
 
-" favorite keybinds
+" ----- Goyo ----- "
+noremap <leader>z :Goyo<CR>
+
+
+
+
+" ============== GENERAL SETTINGS AND MAPPINGS ============== "
+
+
+
+
+" favorite mappings
 inoremap jk <ESC>
 inoremap jl <ESC>:w<CR>
 noremap ; :
@@ -200,8 +220,6 @@ noremap : ;
 " set t_Co=256
 syntax enable
 set background=dark
-let g:material_style='palenight'
-let g:airline_theme='atomic'
 colorscheme vim-material
 
 " Fixing indentation
@@ -216,6 +234,8 @@ set wildchar=<Tab> wildmenu wildmode=full
 " search ignore case
 set ignorecase
 
+set hidden
+
 " change directory to the current file
 nnoremap <leader>c :cd %:p:h<CR>:pwd<CR>
 
@@ -225,34 +245,15 @@ nnoremap <Leader>b :ls<CR>:b<Space>
 " faster reaction time to commands, but harder to enter
 set timeoutlen=200
 
-" switch buffers insanely fast using tab/number
-
 " cycle through buffers
 noremap gb :bnext<CR>
-set hidden
 
-" nerdtree on start
-" autocmd vimenter * NERDTree
-
-" nerdtree change dir.
-
-" Distraction free mode.
-noremap <leader>z :Goyo 120<CR>
-
-" best buffer switching
-" function CannonSB(bufToGo)
-" 	execute "b" . a:bufToGo
-" endfunction
-
+" switch buffers insanely fast using tab/number
+" press a number and then tab to move directly to that buffer.
 noremap <Tab> :<C-U>execute "buffer ".v:count<CR>
 
-" open a nerdtree buffer intended as the folder opener.
-noremap <C-o> :e ~/<CR>/Bookmarks<CR>j:noh<CR>^
-command! Ctrlo :norm <C-o>
-
 noremap <leader>m :make<CR>
+
+" cycle through tabs with alt-h and alt-l
 noremap <M-l> :tabnext<CR>
 noremap <M-h> :tabprevious<CR>
-
-noremap <F8> :TagbarToggle<CR>
-
