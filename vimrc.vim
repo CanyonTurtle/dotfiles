@@ -5,53 +5,24 @@
 
 call plug#begin('~/vim/plugged')
 
-" Standard vim defaults
-Plug 'https://github.com/tpope/vim-sensible'
-
-" library of vimscripts
-Plug 'xolox/vim-misc'
-
-" ctags generation
-Plug 'xolox/vim-easytags'
-Plug 'majutsushi/tagbar'
-
-" surround.vim
-Plug 'tpope/vim-surround'
-
-" vim git stuff
+Plug 'https://github.com/tpope/vim-sensible' " Standard vim defaults
+Plug 'xolox/vim-misc' " library of vimscripts
+Plug 'xolox/vim-easytags' " ctags generation
+Plug 'majutsushi/tagbar' " F8 for ctags preview of a file
+Plug 'tpope/vim-surround' " surround.vim
 Plug 'tpope/vim-fugitive' " git control in vim
 Plug 'airblade/vim-gitgutter' " git in side.
-
-" fuzzy finder
-Plug 'ctrlpvim/ctrlp.vim'
-
-" the 'ranger' file browser integration
-" Plug 'francoiscabrol/ranger.vim'
-" Plug 'rbgrouleff/bclose.vim'
-
-" tmux and vim navigation
-Plug 'christoomey/vim-tmux-navigator'
-
-" Syntax support for lots of languages
-Plug 'sheerun/vim-polyglot'
-
-" detect indents automatically
-Plug 'https://github.com/tpope/vim-sleuth'
-
-" indentation
-Plug 'Yggdroot/indentLine'
-
-" Color schemes
-" Plug 'neutaaaaan/iosvkem'
-" Plug 'CanyonTurtle/material.vim'
-" Plug 'dikiaap/minimalist'
-Plug 'hzchirs/vim-material'
-
-" commenting
-Plug 'scrooloose/nerdcommenter'
-
-" Tabs
-" Plug 'gcmt/taboo.vim'
+Plug 'ctrlpvim/ctrlp.vim' " fuzzy finder
+Plug 'christoomey/vim-tmux-navigator' " tmux and vim navigation
+Plug 'sheerun/vim-polyglot' " Syntax support for lots of languages
+Plug 'https://github.com/tpope/vim-sleuth' " detect indents automatically
+Plug 'Yggdroot/indentLine' " indentation
+Plug 'hzchirs/vim-material' " Color scheme
+Plug 'scrooloose/nerdtree' " NERD tree
+Plug 'luochen1990/rainbow' " rainbow parenthesis
+Plug 'junegunn/goyo.vim' " minimal mode
+Plug 'vim-airline/vim-airline-themes' " airline
+Plug 'vim-airline/vim-airline'
 
 " Deoplete
 if has('nvim')
@@ -61,31 +32,11 @@ else
 	Plug 'roxma/nvim-yarp'
 	Plug 'roxma/vim-hug-neovim-rpc'
 endif
-Plug 'Shougo/deoplete.nvim'
 
-" Plug 'zchee/deoplete-clang'
-
-" Deoplete for javascript
-" Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
-
-" buffers in lines
-" Plug 'bling/vim-bufferline'
-
-" NERD tree
-Plug 'scrooloose/nerdtree'
-
-" rainbow parenthesis
-Plug 'luochen1990/rainbow'
-
-" minimal mode
-Plug 'junegunn/goyo.vim'
-
-" tmux shares airline theme
-" Plug 'edkolev/tmuxline.vim'
-
-" airline
-Plug 'vim-airline/vim-airline-themes'
-Plug 'vim-airline/vim-airline'
+" Plug 'zchee/deoplete-clang' " Delplete C-family support
+" Plug 'ternjs/tern_for_vim', { 'do': 'npm install' } " Deoplete for javascript
+" Plug 'bling/vim-bufferline' " buffers in lines
+" Plug 'edkolev/tmuxline.vim' " tmux shares airline theme
 
 call plug#end()
 
@@ -139,10 +90,6 @@ if (has("termguicolors"))
 	set termguicolors
 endif
 
-" themes are default, dark, palenight, and black
-let g:material_theme_style = 'black'
-let g:material_terminal_italics = 0
-
 "---- Vim Sleuth ----"
 autocmd BufEnter * :Sleuth
 
@@ -157,10 +104,6 @@ nnoremap <Leader>d :Gdiff<CR>
 nnoremap <Leader>w :Gw<CR>
 nnoremap <Leader>a :Gwrite .<CR>
 
-" ----- Nerd Commenter -----"
-" Add spaces after comment delimiters by default
-let g:NERDSpaceDelims = 1
-
 " ----- NERDTree ------ "
 
 " opening hotkey
@@ -168,8 +111,8 @@ let NERDTreeShowBookmarks=1
 let NERDTreeHijackNetrw=1
 
 " open a nerdtree buffer intended as the folder opener.
-noremap <C-o> :e ~/<CR>/Bookmarks<CR>j:noh<CR>^
-command! Ctrlo :norm <C-o>
+noremap <leader>o :e ./<CR>/Bookmarks<CR>j:noh<CR>^
+command! Ctrlo :norm <leader>o
 
 " nerdtree on start
 " autocmd vimenter * NERDTree
@@ -187,14 +130,24 @@ let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
 
 " ----- Airline ------ "
 let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme='atomic'
-
+" let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tagbar#enabled = 0
+"
+" let g:airline_theme='material'
+"
+" let g:airline_section_z="%l:%c"
 " let g:airline#extensions#tmuxline#enabled = 1
+" let g:airline_section_y='--%1p%%-- %#__accent_bold#%l%#__restore__#:%c'
+" let g:airline_section_z='sup'
+" let g:airline_section_a='%q'
+" let g:airline_section_x='%y'
+" let g:airline_section_y='%l:%c'
+let g:airline_section_z='%p%% %l:%c'
+" let g:airline_section_z='%q'
+
 
 " ----- Material ----- "
-let g:material_style='palenight'
-
+let g:material_style='default'
 
 " ----- Tagbar ----- "
 noremap <F8> :TagbarToggle<CR>
@@ -226,7 +179,7 @@ colorscheme vim-material
 "set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 
 " numbering
-:set number
+set number relativenumber
 
 " wildmenu options
 set wildchar=<Tab> wildmenu wildmode=full
@@ -243,17 +196,24 @@ nnoremap <leader>c :cd %:p:h<CR>:pwd<CR>
 nnoremap <Leader>b :ls<CR>:b<Space>
 
 " faster reaction time to commands, but harder to enter
-set timeoutlen=200
+set timeoutlen=350
+
+" statusline
+hi StatusLine cterm=bold gui=bold
+hi StatusLineNC cterm=bold gui=bold
+
+" scriptencoding utf-8
 
 " cycle through buffers
 noremap gb :bnext<CR>
 
-" switch buffers insanely fast using tab/number
-" press a number and then tab to move directly to that buffer.
-noremap <Tab> :<C-U>execute "buffer ".v:count<CR>
-
+" faster make
 noremap <leader>m :make<CR>
 
 " cycle through tabs with alt-h and alt-l
 noremap <M-l> :tabnext<CR>
 noremap <M-h> :tabprevious<CR>
+
+" fast vimrc reload"
+noremap <F5> :w<CR> :so ~/.dotfiles/vimrc.vim<CR>
+
