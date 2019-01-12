@@ -5,24 +5,31 @@
 
 call plug#begin('~/vim/plugged')
 
-Plug 'https://github.com/tpope/vim-sensible' " Standard vim defaults
-Plug 'xolox/vim-misc' " library of vimscripts
-Plug 'xolox/vim-easytags' " ctags generation
-Plug 'majutsushi/tagbar' " F8 for ctags preview of a file
+" Plug 'https://github.com/tpope/vim-sensible' " Standard vim defaults
+" Plug 'xolox/vim-misc' " library of vimscripts
+" Plug 'xolox/vim-easytags' " ctags generation
+" Plug 'majutsushi/tagbar' " F8 for ctags preview of a file
 Plug 'tpope/vim-surround' " surround.vim
 Plug 'tpope/vim-fugitive' " git control in vim
-Plug 'airblade/vim-gitgutter' " git in side.
-Plug 'ctrlpvim/ctrlp.vim' " fuzzy finder
+" Plug 'airblade/vim-gitgutter' " git in side.
+" Plug 'ctrlpvim/ctrlp.vim' " fuzzy finder
 Plug 'christoomey/vim-tmux-navigator' " tmux and vim navigation
 Plug 'sheerun/vim-polyglot' " Syntax support for lots of languages
 Plug 'https://github.com/tpope/vim-sleuth' " detect indents automatically
-Plug 'Yggdroot/indentLine' " indentation
-Plug 'hzchirs/vim-material' " Color scheme
+" Plug 'Yggdroot/indentLine' " indentation
+" Plug 'hzchirs/vim-material' " Color scheme
+Plug 'NLKNguyen/papercolor-theme' " another google type color scheme
 Plug 'scrooloose/nerdtree' " NERD tree
-Plug 'luochen1990/rainbow' " rainbow parenthesis
-Plug 'junegunn/goyo.vim' " minimal mode
-Plug 'vim-airline/vim-airline-themes' " airline
-Plug 'vim-airline/vim-airline'
+" Plug 'luochen1990/rainbow' " rainbow parenthesis
+" Plug 'junegunn/goyo.vim' " minimal mode
+" Plug 'vim-airline/vim-airline-themes' " airline
+" Plug 'vim-airline/vim-airline'
+" Plug 'vim-scripts/restore_view.vim'
+
+" easytags
+if has('nvim')
+	let g:easytags_async=1
+endif
 
 " Deoplete
 if has('nvim')
@@ -33,14 +40,12 @@ else
 	Plug 'roxma/vim-hug-neovim-rpc'
 endif
 
-" Plug 'zchee/deoplete-clang' " Delplete C-family support
+Plug 'zchee/deoplete-clang' " Delplete C-family support
 " Plug 'ternjs/tern_for_vim', { 'do': 'npm install' } " Deoplete for javascript
 " Plug 'bling/vim-bufferline' " buffers in lines
 " Plug 'edkolev/tmuxline.vim' " tmux shares airline theme
 
 call plug#end()
-
-
 
 
 
@@ -60,6 +65,10 @@ autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
 " deoplete tab-complete
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+
+" no scratch window.
+set completeopt-=preview
+
 
 " tern
 autocmd FileType javascript nnoremap <silent> <buffer> gb :TernDef<CR>
@@ -107,30 +116,27 @@ nnoremap <Leader>a :Gwrite .<CR>
 " ----- NERDTree ------ "
 
 " opening hotkey
+
 let NERDTreeShowBookmarks=1
 let NERDTreeHijackNetrw=1
-
-" open a nerdtree buffer intended as the folder opener.
-noremap <leader>o :e ./<CR>/Bookmarks<CR>j:noh<CR>^
-command! Ctrlo :norm <leader>o
 
 " nerdtree on start
 " autocmd vimenter * NERDTree
 
 " close if only one remaining
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " ----- Rainbow Parenthesis -----"
 
 let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
 
 " ----- clang deoplete ----- "
-let g:deoplete#sources#clang#libclang_path = '/usr/lib/x86_64-linux-gnu/libclang.so'
-let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
+let g:deoplete#sources#clang#libclang_path = '/usr/lib/x86_64-linux-gnu/libclang-3.8.so.1'
+let g:deoplete#sources#clang#clang_header = '/usr/include/clang'
 
 " ----- Airline ------ "
 let g:airline_powerline_fonts = 1
-" let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tagbar#enabled = 0
 "
 " let g:airline_theme='material'
@@ -147,7 +153,8 @@ let g:airline_section_z='%p%% %l:%c'
 
 
 " ----- Material ----- "
-let g:material_style='default'
+"  default, light, or palenight
+let g:material_style='palenight'
 
 " ----- Tagbar ----- "
 noremap <F8> :TagbarToggle<CR>
@@ -170,16 +177,18 @@ noremap ; :
 noremap : ;
 
 " coloring
-" set t_Co=256
+set t_Co=256
 syntax enable
-set background=dark
-colorscheme vim-material
+set background=light
+colorscheme PaperColor " vim-material
+
 
 " Fixing indentation
 "set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 
 " numbering
-set number relativenumber
+" set number relativenumber
+set number norelativenumber
 
 " wildmenu options
 set wildchar=<Tab> wildmenu wildmode=full
@@ -198,12 +207,6 @@ nnoremap <Leader>b :ls<CR>:b<Space>
 " faster reaction time to commands, but harder to enter
 set timeoutlen=350
 
-" statusline
-hi StatusLine cterm=bold gui=bold
-hi StatusLineNC cterm=bold gui=bold
-
-" scriptencoding utf-8
-
 " cycle through buffers
 noremap gb :bnext<CR>
 
@@ -215,5 +218,25 @@ noremap <M-l> :tabnext<CR>
 noremap <M-h> :tabprevious<CR>
 
 " fast vimrc reload"
+noremap <C-F5> :e ~/.dotfiles/vimrc.vim<CR>
 noremap <F5> :w<CR> :so ~/.dotfiles/vimrc.vim<CR>
 
+let g:netrw_liststyle = 0
+let g:netrw_banner = 0
+
+noremap gb :bnext<CR>
+
+autocmd FileType netrw nnoremap ? :help netrw-quickmap<CR>
+
+let g:vue_disable_pre_processors=1
+
+" copy and paste on WSL bois
+vmap <C-y> y;new ~/.vimbuffer<CR>VGp;x<CR> \| ;!cat ~/.vimbuffer \| clip.exe <CR><CR>
+" paste from buffer
+map <C-p> ;r ~/.vimbuffer<CR>
+
+" exit terminal mode cooler
+tnoremap jk <C-\><C-n>
+tnoremap <C-h> <C-\><C-n><C-w>h
+
+command! -nargs=1 Vr vertical resize <args>

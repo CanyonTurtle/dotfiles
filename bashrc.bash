@@ -42,6 +42,8 @@ alias tmux="env TERM=xterm-256color tmux"
 LS_COLORS='ow=01;36;40'
 export LS_COLORS
 
+alias mm="clear; make 2>&1 | head -15"
+
 # use vim as editor
 export EDITOR=nvim
 
@@ -80,8 +82,12 @@ function ranger-cd {
 bind '";q\C-m":"exit\C-m"'
 bind '";e.\C-m":"nvim .\C-m"'
 bind '";e\C-m":"nvim\C-m"'
+
 bind '"\C-o":"nvim -c Ctrlo\C-m"'
 
 PS1='(⌐■_■) \w$ '
 
 unset color_prompt force_color_prompt
+
+export EDITOR='nvim'
+export DISPLAY=:0 
