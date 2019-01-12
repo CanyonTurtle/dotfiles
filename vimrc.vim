@@ -67,7 +67,7 @@ autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
 " no scratch window.
-set completeopt-=preview
+" set completeopt-=preview
 
 
 " tern
@@ -182,6 +182,11 @@ syntax enable
 set background=light
 colorscheme PaperColor " vim-material
 
+" fast way to change between light and dark modes.
+command! -nargs=0 Light set background=light
+command! -nargs=0 Dark set background=dark
+
+
 
 " Fixing indentation
 "set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
@@ -240,3 +245,4 @@ tnoremap jk <C-\><C-n>
 tnoremap <C-h> <C-\><C-n><C-w>h
 
 command! -nargs=1 Vr vertical resize <args>
+
