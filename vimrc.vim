@@ -5,6 +5,7 @@
 
 call plug#begin('~/vim/plugged')
 
+<<<<<<< HEAD
 " Plug 'https://github.com/tpope/vim-sensible' " Standard vim defaults
 " Plug 'xolox/vim-misc' " library of vimscripts
 " Plug 'xolox/vim-easytags' " ctags generation
@@ -30,6 +31,26 @@ Plug 'scrooloose/nerdtree' " NERD tree
 if has('nvim')
 	let g:easytags_async=1
 endif
+=======
+Plug 'https://github.com/tpope/vim-sensible' " Standard vim defaults
+Plug 'xolox/vim-misc' " library of vimscripts
+Plug 'xolox/vim-easytags' " ctags generation
+Plug 'majutsushi/tagbar' " F8 for ctags preview of a file
+Plug 'tpope/vim-surround' " surround.vim
+Plug 'tpope/vim-fugitive' " git control in vim
+Plug 'airblade/vim-gitgutter' " git in side.
+Plug 'ctrlpvim/ctrlp.vim' " fuzzy finder
+Plug 'christoomey/vim-tmux-navigator' " tmux and vim navigation
+Plug 'sheerun/vim-polyglot' " Syntax support for lots of languages
+Plug 'https://github.com/tpope/vim-sleuth' " detect indents automatically
+Plug 'Yggdroot/indentLine' " indentation
+Plug 'hzchirs/vim-material' " Color scheme
+Plug 'scrooloose/nerdtree' " NERD tree
+Plug 'luochen1990/rainbow' " rainbow parenthesis
+Plug 'junegunn/goyo.vim' " minimal mode
+Plug 'vim-airline/vim-airline-themes' " airline
+Plug 'vim-airline/vim-airline'
+>>>>>>> 2516d050522eb95337acc8180bbe3a272baa58f8
 
 " Deoplete
 if has('nvim')
@@ -40,7 +61,11 @@ else
 	Plug 'roxma/vim-hug-neovim-rpc'
 endif
 
+<<<<<<< HEAD
 Plug 'zchee/deoplete-clang' " Delplete C-family support
+=======
+" Plug 'zchee/deoplete-clang' " Delplete C-family support
+>>>>>>> 2516d050522eb95337acc8180bbe3a272baa58f8
 " Plug 'ternjs/tern_for_vim', { 'do': 'npm install' } " Deoplete for javascript
 " Plug 'bling/vim-bufferline' " buffers in lines
 " Plug 'edkolev/tmuxline.vim' " tmux shares airline theme
@@ -120,6 +145,13 @@ nnoremap <Leader>a :Gwrite .<CR>
 let NERDTreeShowBookmarks=1
 let NERDTreeHijackNetrw=1
 
+<<<<<<< HEAD
+=======
+" open a nerdtree buffer intended as the folder opener.
+noremap <leader>o :e ./<CR>/Bookmarks<CR>j:noh<CR>^
+command! Ctrlo :norm <leader>o
+
+>>>>>>> 2516d050522eb95337acc8180bbe3a272baa58f8
 " nerdtree on start
 " autocmd vimenter * NERDTree
 
@@ -136,7 +168,11 @@ let g:deoplete#sources#clang#clang_header = '/usr/include/clang'
 
 " ----- Airline ------ "
 let g:airline_powerline_fonts = 1
+<<<<<<< HEAD
 let g:airline#extensions#tabline#enabled = 1
+=======
+" let g:airline#extensions#tabline#enabled = 1
+>>>>>>> 2516d050522eb95337acc8180bbe3a272baa58f8
 let g:airline#extensions#tagbar#enabled = 0
 "
 " let g:airline_theme='material'
@@ -150,12 +186,20 @@ let g:airline#extensions#tagbar#enabled = 0
 " let g:airline_section_y='%l:%c'
 let g:airline_section_z='%p%% %l:%c'
 " let g:airline_section_z='%q'
+<<<<<<< HEAD
 
 
 " ----- Material ----- "
 "  default, light, or palenight
 let g:material_style='palenight'
 
+=======
+
+
+" ----- Material ----- "
+let g:material_style='default'
+
+>>>>>>> 2516d050522eb95337acc8180bbe3a272baa58f8
 " ----- Tagbar ----- "
 noremap <F8> :TagbarToggle<CR>
 
@@ -192,8 +236,12 @@ command! -nargs=0 Dark set background=dark
 "set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 
 " numbering
+<<<<<<< HEAD
 " set number relativenumber
 set number norelativenumber
+=======
+set number relativenumber
+>>>>>>> 2516d050522eb95337acc8180bbe3a272baa58f8
 
 " wildmenu options
 set wildchar=<Tab> wildmenu wildmode=full
@@ -211,6 +259,15 @@ nnoremap <Leader>b :ls<CR>:b<Space>
 
 " faster reaction time to commands, but harder to enter
 set timeoutlen=350
+<<<<<<< HEAD
+=======
+
+" statusline
+hi StatusLine cterm=bold gui=bold
+hi StatusLineNC cterm=bold gui=bold
+
+" scriptencoding utf-8
+>>>>>>> 2516d050522eb95337acc8180bbe3a272baa58f8
 
 " cycle through buffers
 noremap gb :bnext<CR>
@@ -223,6 +280,7 @@ noremap <M-l> :tabnext<CR>
 noremap <M-h> :tabprevious<CR>
 
 " fast vimrc reload"
+<<<<<<< HEAD
 noremap <C-F5> :e ~/.dotfiles/vimrc.vim<CR>
 noremap <F5> :w<CR> :so ~/.dotfiles/vimrc.vim<CR>
 
@@ -246,3 +304,7 @@ tnoremap <C-h> <C-\><C-n><C-w>h
 
 command! -nargs=1 Vr vertical resize <args>
 
+=======
+noremap <F5> :w<CR> :so ~/.dotfiles/vimrc.vim<CR>
+
+>>>>>>> 2516d050522eb95337acc8180bbe3a272baa58f8
