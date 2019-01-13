@@ -16,6 +16,10 @@ Plug 'tpope/vim-fugitive' " git control in vim
 Plug 'christoomey/vim-tmux-navigator' " tmux and vim navigation
 Plug 'sheerun/vim-polyglot' " Syntax support for lots of languages
 Plug 'https://github.com/tpope/vim-sleuth' " detect indents automatically
+
+Plug 'xolox/vim-misc' "needed for session manager
+Plug 'xolox/vim-session' " session manager
+
 " Plug 'Yggdroot/indentLine' " indentation
 
 " COLOR SCHEMES
@@ -167,7 +171,9 @@ noremap <F8> :TagbarToggle<CR>
 " ----- Goyo ----- "
 noremap <leader>z :Goyo<CR>
 
-
+" ----- Vim-Session ----- "
+let g:session_autosave='yes'
+let g:session_autosave_periodic=5
 
 
 " ============== GENERAL SETTINGS AND MAPPINGS ============== "
@@ -184,7 +190,7 @@ noremap : ;
 " coloring
 set t_Co=256
 syntax enable
-set background=dark
+set background=light
 colorscheme PaperColor
 
 " fast way to change between light and dark modes.
