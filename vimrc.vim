@@ -140,10 +140,6 @@ command! Ctrlo :norm <leader>o
 
 let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
 
-" ----- clang deoplete ----- "
-let g:deoplete#sources#clang#libclang_path = '/usr/lib/x86_64-linux-gnu/libclang-3.8.so.1'
-let g:deoplete#sources#clang#clang_header = '/usr/include/clang'
-
 " ----- Airline ------ "
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
@@ -190,7 +186,7 @@ noremap : ;
 " coloring
 set t_Co=256
 syntax enable
-set background=light
+set background=dark
 colorscheme PaperColor
 
 " fast way to change between light and dark modes.
@@ -256,3 +252,10 @@ tnoremap jk <C-\><C-n>
 tnoremap <C-h> <C-\><C-n><C-w>h
 
 command! -nargs=1 Vr vertical resize <args>
+
+noremap <C-m> :!gcc -o %:t:r.out %:t && ./%:t:r.out<CR>
+
+" this-machine-specific configuration.
+if filereadable("local_vimrc.vim")
+	source local_vimrc.vim
+endif

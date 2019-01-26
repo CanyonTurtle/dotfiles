@@ -1,13 +1,14 @@
 # Dotfiles
 
-Configuration for vim neovim, and tmux.
+Configuration for vim, neovim, tmux, and bash.
 To see what configuration is provided, read the configuration files and their inline documetation.
 
-Most of the content of the configuration is not my own; it comes from a mix of boilerplate and configuration setups listed here:
+Sources:
 - [oh my tmux](https://github.com/gpakosz/.tmux)
 - [the best and greatest tmux conf ever](https://gist.github.com/spicycode/1229612)
 
-Note: for tmux and vim to look nice, there needs to be unicode font and 256 color support in the terminal.
+## Requirements
+- for tmux and vim to look nice, there needs to be unicode font and 256 color support in the terminal.
 
 ## Features
 - Vim:
@@ -22,43 +23,9 @@ Note: for tmux and vim to look nice, there needs to be unicode font and 256 colo
   - custom aliases
   - color configuration
 
-## Configuration 
-
-This guides through setting up a new BASH environment with these configuration files
-
-```bash
-cd ~; git clone https://github.com/CanyonTurtle/dotfiles.git .dotfiles
+## Installation
+To get this configuration on a unix system:
 ```
-
-### vim
-
-first, [install Vim Plug](https://github.com/junegunn/vim-plug). Then:
-
-```bash
-touch ~/.vimrc; echo "so ~/.dotfiles/vimrc.vim" >> ~/.vimrc
+cd ~/.dotfiles
+./setup.bash
 ```
-### neovim
-
-do the vim instruction as above, and then: 
-
-```bash
-touch ~/.config/nvim/init.vim; echo "so ~/.dotfiles/nvimrc.vim" >> ~/.config/nvim/init.vim
-```
-
-follow additional configuration steps on neovim.com to set the default editor to nvim.
-
-### tmux
-
-```bash
-cd ~ \
-git clone https://github.com/gpakosz/.tmux.git \
-mv .tmux/.tmux.conf . \
-mv .tmux/.tmux.conf.local . \
-echo "source-file ~/.dotfiles/tmux.conf" >> ~/.tmux.conf.local
-```
-
-### bash
-```bash
-touch ~/.bashrc; echo "source ~/.dotfiles/bashrc.bash" >> ~/.bashrc
-```
-
