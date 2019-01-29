@@ -262,3 +262,7 @@ let localvimrc = expand('<sfile>:p:h') . '/local_vimrc.vim'
 if filereadable(localvimrc)
 	exec "source " . localvimrc
 endif
+
+" header guards on  file
+command! HG exec "norm ggO\<Esc>" | exec "r !echo %" | exec "norm ggjveyk^p^vegUA_HjkI#ifndef jkVyp^cW#definejkGo#endifjkggjjdd"
+command! CPP exec "r %:r.h" | exec "norm ggd/class\<CR>ddGd?};\<CR>ddggOjk" | exec "r !echo %:r.h" | exec "norm! I#include \"\<esc>A\"\<esc>gg=G/public:\<cr>" | exec "norm! dd^ve\"uy" | exec '%s/\([^ (]*(\)/' . @u . '::\1/g'
