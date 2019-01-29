@@ -34,6 +34,8 @@ Plug 'scrooloose/nerdtree' " NERD tree
 " Plug 'vim-airline/vim-airline'
 " Plug 'vim-scripts/restore_view.vim'
 
+Plug 'mattn/emmet-vim' " make HTML LIT
+
 " easytags
 if has('nvim')
 	let g:easytags_async=1
