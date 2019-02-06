@@ -24,7 +24,9 @@ Plug 'xolox/vim-session' " session manager
 
 " COLOR SCHEMES
 " Plug 'hzchirs/vim-material' " Color scheme
-Plug 'NLKNguyen/papercolor-theme' " another google type color scheme
+" Plug 'NLKNguyen/papercolor-theme' " another google type color scheme
+Plug 'lifepillar/vim-solarized8'
+" Plug 'skielbasa/vim-material-monokai'
 " Plug 'morhetz/gruvbox'
 
 Plug 'scrooloose/nerdtree' " NERD tree
@@ -35,7 +37,11 @@ Plug 'scrooloose/nerdtree' " NERD tree
 " Plug 'vim-scripts/restore_view.vim'
 
 Plug 'mattn/emmet-vim' " make HTML LIT
+Plug 'editorconfig/editorconfig-vim'
 
+
+" incremental searching thing
+Plug 'romainl/vim-cool'
 " easytags
 if has('nvim')
 	let g:easytags_async=1
@@ -61,6 +67,8 @@ call plug#end()
 " ============ PLUGIN SETTINGS AND MAPPINGS =========== "
 
 
+" ----- Vim monokai material -----
+let g:materialmonokai_italic=1
 
 
 "----- Deoplete -----
@@ -170,8 +178,11 @@ noremap <F8> :TagbarToggle<CR>
 noremap <leader>z :Goyo<CR>
 
 " ----- Vim-Session ----- "
-let g:session_autosave='yes'
-let g:session_autosave_periodic=5
+let g:session_autosave='no' " I disabled it so when I close the buffers
+let g:session_autoload='yes'
+" one-by-one at the end it won't be saved that way.
+" let g:session_autosave_periodic=5
+let g:session_default_to_last=1
 
 
 " ============== GENERAL SETTINGS AND MAPPINGS ============== "
@@ -189,7 +200,9 @@ noremap : ;
 set t_Co=256
 syntax enable
 set background=dark
-colorscheme PaperColor
+" colorscheme PaperColor
+" colorscheme material-monokai
+colorscheme solarized8_low
 
 " fast way to change between light and dark modes.
 command! -nargs=0 Light set background=light
@@ -265,4 +278,8 @@ endif
 
 " header guards on  file
 command! HG exec "norm ggO\<Esc>" | exec "r !echo %" | exec "norm ggjveyk^p^vegUA_HjkI#ifndef jkVyp^cW#definejkGo#endifjkggjjdd"
-command! CPP exec "r %:r.h" | exec "norm ggd/class\<CR>ddGd?};\<CR>ddggOjk" | exec "r !echo %:r.h" | exec "norm! I#include \"\<esc>A\"\<esc>gg=G/public:\<cr>" | exec "norm! dd^ve\"uy" | exec '%s/\([^ (]*(\)/' . @u . '::\1/g'
+command! CPP exec "r %:r.h" | exec "norm ggd/class\<CR>ddGd?};\<CR>ddggOjk" | exec "r !echo %:r.h" | exec "norm! I#include \"\<esc>A\"\<esc>gg=G/public:\<cr>" | exec "norm! dd^ve\"uy" | exec '%s/\([^ (]*(\)/' . @u . '::\1/g' | exec '%s/);/) {\r\r}/g' | exec "norm! G?}\<cr>jdG"
+
+" better window nav
+set splitbelow
+set splitright
