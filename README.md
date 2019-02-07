@@ -29,3 +29,6 @@ To get this configuration on a unix system:
 cd ~/.dotfiles
 ./setup.bash
 ```
+
+## Machine-Specific Configuration
+See the `.gitignore`.

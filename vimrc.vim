@@ -283,3 +283,5 @@ command! CPP exec "r %:r.h" | exec "norm ggd/class\<CR>ddGd?};\<CR>ddggOjk" | ex
 " better window nav
 set splitbelow
 set splitright
+
+noremap <C-S> :SaveSession<CR>
