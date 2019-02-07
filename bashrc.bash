@@ -91,3 +91,7 @@ unset color_prompt force_color_prompt
 
 export EDITOR='nvim'
 export DISPLAY=:0 
+
+# ssh key inject
+eval `ssh-agent -s`
+ssh-add ~/.ssh/*_rsa
