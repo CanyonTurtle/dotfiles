@@ -24,7 +24,7 @@ Plug 'xolox/vim-session' " session manager
 
 " COLOR SCHEMES
 " Plug 'hzchirs/vim-material' " Color scheme
-" Plug 'NLKNguyen/papercolor-theme' " another google type color scheme
+Plug 'NLKNguyen/papercolor-theme' " another google type color scheme
 Plug 'lifepillar/vim-solarized8'
 " Plug 'skielbasa/vim-material-monokai'
 " Plug 'morhetz/gruvbox'
@@ -39,6 +39,9 @@ Plug 'scrooloose/nerdtree' " NERD tree
 Plug 'mattn/emmet-vim' " make HTML LIT
 Plug 'editorconfig/editorconfig-vim'
 
+" Plug 'w0rp/ale'
+
+Plug 'andreasvc/vim-256noir'
 
 " incremental searching thing
 Plug 'romainl/vim-cool'
@@ -66,6 +69,12 @@ call plug#end()
 
 " ============ PLUGIN SETTINGS AND MAPPINGS =========== "
 
+"  " ----- ALE -----
+"  let g:ale_cpp_clang_options='-Wall -std=c++14 -isystem'
+"  let g:ale_cpp_clangd_options='-Wall -std=c++14 -isystem'
+"  let g:ale_cpp_gcc_options='-Wall -std=c++14 -isystem'
+"  
+"  " let g:ale_completion_enabled=1
 
 " ----- Vim monokai material -----
 let g:materialmonokai_italic=1
@@ -200,9 +209,10 @@ noremap : ;
 set t_Co=256
 syntax enable
 set background=dark
+colorscheme 256_noir
 " colorscheme PaperColor
 " colorscheme material-monokai
-colorscheme solarized8_low
+" colorscheme solarized8_low
 
 " fast way to change between light and dark modes.
 command! -nargs=0 Light set background=light
@@ -285,4 +295,3 @@ set splitbelow
 set splitright
 
 noremap <C-S> :SaveSession<CR>
-
