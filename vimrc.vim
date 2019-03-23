@@ -23,11 +23,14 @@ Plug 'xolox/vim-session' " session manager
 " Plug 'Yggdroot/indentLine' " indentation
 
 " COLOR SCHEMES
-" Plug 'hzchirs/vim-material' " Color scheme
+Plug 'hzchirs/vim-material' " Color scheme
+Plug 'abnt713/vim-hashpunk'
+Plug 'BarretRen/vim-colorscheme'
 Plug 'NLKNguyen/papercolor-theme' " another google type color scheme
 Plug 'lifepillar/vim-solarized8'
-" Plug 'skielbasa/vim-material-monokai'
-" Plug 'morhetz/gruvbox'
+Plug 'DankNeon/vim'
+Plug 'skielbasa/vim-material-monokai'
+Plug 'morhetz/gruvbox'
 
 Plug 'scrooloose/nerdtree' " NERD tree
 " Plug 'luochen1990/rainbow' " rainbow parenthesis
@@ -188,7 +191,7 @@ noremap <leader>z :Goyo<CR>
 
 " ----- Vim-Session ----- "
 let g:session_autosave='no' " I disabled it so when I close the buffers
-let g:session_autoload='yes'
+let g:session_autoload='no'
 " one-by-one at the end it won't be saved that way.
 " let g:session_autosave_periodic=5
 let g:session_default_to_last=1
@@ -209,7 +212,7 @@ noremap : ;
 set t_Co=256
 syntax enable
 set background=dark
-colorscheme 256_noir
+" colorscheme 256_noir
 " colorscheme PaperColor
 " colorscheme material-monokai
 " colorscheme solarized8_low
@@ -218,7 +221,10 @@ colorscheme 256_noir
 command! -nargs=0 Light set background=light
 command! -nargs=0 Dark set background=dark
 
-
+let colors = [ '256_noir', 'Bgreen', 'PaperColor', 'dank-neon', 'gruvbox', 'hashpunk', 'hashpunk-lapis', 'hashpunk-sweet', 'material-monokai', 'monokai', 'solarized8', 'vim-material'] 
+" let colors = [ '256_noir', 'Bgreen', 'PaperColor', 'dank-neon', 'gruvbox', 'hashpunk', 'hashpunk-lapis', 'hashpunk-sweet', 'material-monokai', 'monokai', 'solarized8', 'solarized8_flat', 'solarized8_high', 'solarized8_low', 'vim-material'] 
+:command! RandomColor execute 'colorscheme '.colors[(system('/bin/bash -c "echo -n $RANDOM"') % len(colors))]
+RandomColor
 
 " Fixing indentation
 "set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
