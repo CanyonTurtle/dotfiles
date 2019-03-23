@@ -42,6 +42,7 @@ Plug 'scrooloose/nerdtree' " NERD tree
 Plug 'mattn/emmet-vim' " make HTML LIT
 Plug 'editorconfig/editorconfig-vim'
 
+Plug 'CanyonTurtle/tmuxline.vim'
 " Plug 'w0rp/ale'
 
 Plug 'andreasvc/vim-256noir'
@@ -223,8 +224,10 @@ command! -nargs=0 Dark set background=dark
 
 let colors = [ '256_noir', 'Bgreen', 'PaperColor', 'dank-neon', 'gruvbox', 'hashpunk', 'hashpunk-lapis', 'hashpunk-sweet', 'material-monokai', 'monokai', 'solarized8', 'vim-material'] 
 " let colors = [ '256_noir', 'Bgreen', 'PaperColor', 'dank-neon', 'gruvbox', 'hashpunk', 'hashpunk-lapis', 'hashpunk-sweet', 'material-monokai', 'monokai', 'solarized8', 'solarized8_flat', 'solarized8_high', 'solarized8_low', 'vim-material'] 
-:command! RandomColor execute 'colorscheme '.colors[(system('/bin/bash -c "echo -n $RANDOM"') % len(colors))]
-RandomColor
+:command! RandomColor execute 'colorscheme '.colors[(system('/bin/bash -c "echo -n $RANDOM"') % len(colors))] <bar> execute 'TmuxlineSimple 1' 
+autocmd VimEnter * RandomColor
+
+" autocmd BufEnter * RandomColor
 
 " Fixing indentation
 "set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
