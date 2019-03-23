@@ -281,7 +281,7 @@ command! -nargs=1 Vr vertical resize <args>
 noremap <C-m> :!gcc -o %:t:r.out %:t && ./%:t:r.out<CR>
 
 " this-machine-specific configuration.
-let localvimrc = expand('<sfile>:p:h') . '/local_vimrc.vim'
+let localvimrc = expand('<sfile>:p:h') . '/vimrc.vim.local'
 if filereadable(localvimrc)
 	exec "source " . localvimrc
 endif
