@@ -34,7 +34,7 @@ Plug 'morhetz/gruvbox'
 
 Plug 'scrooloose/nerdtree' " NERD tree
 " Plug 'luochen1990/rainbow' " rainbow parenthesis
-" Plug 'junegunn/goyo.vim' " minimal mode
+Plug 'junegunn/goyo.vim' " minimal mode
 " Plug 'vim-airline/vim-airline-themes' " airline
 " Plug 'vim-airline/vim-airline'
 " Plug 'vim-scripts/restore_view.vim'
@@ -224,10 +224,12 @@ command! -nargs=0 Dark set background=dark
 
 let colors = [ '256_noir', 'Bgreen', 'PaperColor', 'dank-neon', 'gruvbox', 'hashpunk', 'hashpunk-lapis', 'hashpunk-sweet', 'material-monokai', 'monokai', 'solarized8', 'vim-material'] 
 " let colors = [ '256_noir', 'Bgreen', 'PaperColor', 'dank-neon', 'gruvbox', 'hashpunk', 'hashpunk-lapis', 'hashpunk-sweet', 'material-monokai', 'monokai', 'solarized8', 'solarized8_flat', 'solarized8_high', 'solarized8_low', 'vim-material'] 
-:command! RandomColor execute 'colorscheme '.colors[(system('/bin/bash -c "echo -n $RANDOM"') % len(colors))] <bar> execute 'TmuxlineSimple 1' 
+:command! DisableDiffColors hi StatusLine gui=NONE guibg=NONE <bar> hi StatusLineNC gui=NONE guibg=NONE <bar> hi LineNr guibg=NONE <bar> hi VertSplit guibg=bg guifg=bg
+:command! RandomColor execute 'colorscheme '.colors[(system('/bin/bash -c "echo -n $RANDOM"') % len(colors))] <bar> execute 'TmuxlineSimple 1' <bar> DisableDiffColors
+
 autocmd VimEnter * RandomColor
 
-" autocmd BufEnter * RandomColor
+autocmd BufEnter * DisableDiffColors
 
 " Fixing indentation
 "set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
@@ -304,3 +306,7 @@ set splitbelow
 set splitright
 
 noremap <C-S> :SaveSession<CR>
+
+set lazyredraw
+set regexpengine=1
+
