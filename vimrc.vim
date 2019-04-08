@@ -9,20 +9,23 @@ call plug#begin('~/vim/plugged')
 " Plug 'xolox/vim-misc' " library of vimscripts
 " Plug 'xolox/vim-easytags' " ctags generation
 " Plug 'majutsushi/tagbar' " F8 for ctags preview of a file
+"
 Plug 'tpope/vim-surround' " surround.vim
 Plug 'tpope/vim-fugitive' " git control in vim
+
 " Plug 'airblade/vim-gitgutter' " git in side.
 " Plug 'ctrlpvim/ctrlp.vim' " fuzzy finder
+"
 Plug 'christoomey/vim-tmux-navigator' " tmux and vim navigation
 Plug 'sheerun/vim-polyglot' " Syntax support for lots of languages
 Plug 'https://github.com/tpope/vim-sleuth' " detect indents automatically
-
 Plug 'xolox/vim-misc' "needed for session manager
 Plug 'xolox/vim-session' " session manager
 
 " Plug 'Yggdroot/indentLine' " indentation
 
 " COLOR SCHEMES
+"
 Plug 'hzchirs/vim-material' " Color scheme
 Plug 'abnt713/vim-hashpunk'
 Plug 'BarretRen/vim-colorscheme'
@@ -33,8 +36,11 @@ Plug 'skielbasa/vim-material-monokai'
 Plug 'morhetz/gruvbox'
 
 Plug 'scrooloose/nerdtree' " NERD tree
+
 " Plug 'luochen1990/rainbow' " rainbow parenthesis
+"
 Plug 'junegunn/goyo.vim' " minimal mode
+
 " Plug 'vim-airline/vim-airline-themes' " airline
 " Plug 'vim-airline/vim-airline'
 " Plug 'vim-scripts/restore_view.vim'
@@ -43,12 +49,17 @@ Plug 'mattn/emmet-vim' " make HTML LIT
 Plug 'editorconfig/editorconfig-vim'
 
 Plug 'CanyonTurtle/tmuxline.vim'
+
 " Plug 'w0rp/ale'
 
 Plug 'andreasvc/vim-256noir'
 
 " incremental searching thing
 Plug 'romainl/vim-cool'
+
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+
 " easytags
 if has('nvim')
 	let g:easytags_async=1
@@ -225,7 +236,8 @@ command! -nargs=0 Dark set background=dark
 let colors = [ '256_noir', 'Bgreen', 'PaperColor', 'dank-neon', 'gruvbox', 'hashpunk', 'hashpunk-lapis', 'hashpunk-sweet', 'material-monokai', 'monokai', 'solarized8', 'vim-material'] 
 " let colors = [ '256_noir', 'Bgreen', 'PaperColor', 'dank-neon', 'gruvbox', 'hashpunk', 'hashpunk-lapis', 'hashpunk-sweet', 'material-monokai', 'monokai', 'solarized8', 'solarized8_flat', 'solarized8_high', 'solarized8_low', 'vim-material'] 
 :command! DisableDiffColors hi StatusLine gui=NONE guibg=NONE <bar> hi StatusLineNC gui=NONE guibg=NONE <bar> hi LineNr guibg=NONE <bar> hi VertSplit guibg=bg guifg=bg
-:command! RandomColor execute 'colorscheme '.colors[(system('/bin/bash -c "echo -n $RANDOM"') % len(colors))] <bar> execute 'TmuxlineSimple 1' <bar> DisableDiffColors
+:command! RandomColor execute 'colorscheme '.colors[(system('/bin/bash -c "echo -n $RANDOM"') % len(colors))] <bar> DisableDiffColors
+" <bar> execute 'TmuxlineSimple 1' 
 
 autocmd VimEnter * RandomColor
 
@@ -310,3 +322,15 @@ noremap <C-S> :SaveSession<CR>
 set lazyredraw
 set regexpengine=1
 
+function! GFilesFallback()
+  let output = system('git rev-parse --show-toplevel') " Is there a faster way?
+  let prefix = get(g:, 'fzf_command_prefix', '')
+  if v:shell_error == 0
+    exec "normal! :" . prefix . "GFiles\<CR>"
+  else
+    exec "normal! :" . prefix . "Files\<CR>"
+  endif
+  return 0
+endfunction
+
+noremap <c-p> :call GFilesFallback()<CR>
