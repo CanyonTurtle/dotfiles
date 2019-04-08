@@ -1,7 +1,4 @@
-
-
 " ================= PLUGIN INSTALLATION ================ "
-
 
 call plug#begin('~/vim/plugged')
 
@@ -60,23 +57,27 @@ Plug 'romainl/vim-cool'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
-" easytags
-if has('nvim')
-	let g:easytags_async=1
-endif
-" Deoplete
-if has('nvim')
-	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-	Plug 'Shougo/deoplete.nvim'
-	Plug 'roxma/nvim-yarp'
-	Plug 'roxma/vim-hug-neovim-rpc'
-endif
 
-Plug 'zchee/deoplete-clang' " Delplete C-family support
+" TODO C family with deoplete otherwise coc?
+" easytags
+" if has('nvim')
+" 	let g:easytags_async=1
+" endif
+" Deoplete
+" if has('nvim')
+" 	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" else
+" 	Plug 'Shougo/deoplete.nvim'
+" 	Plug 'roxma/nvim-yarp'
+" 	Plug 'roxma/vim-hug-neovim-rpc'
+" endif
+
+" Plug 'zchee/deoplete-clang' " Delplete C-family support
 " Plug 'ternjs/tern_for_vim', { 'do': 'npm install' } " Deoplete for javascript
 " Plug 'bling/vim-bufferline' " buffers in lines
 " Plug 'edkolev/tmuxline.vim' " tmux shares airline theme
+
+Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 
 call plug#end()
 
@@ -96,16 +97,34 @@ let g:materialmonokai_italic=1
 
 
 "----- Deoplete -----
-let g:deoplete#enable_at_startup = 1
-if !exists('g:deoplete#omni#input_patterns')
-	let g:deoplete#omni#input_patterns = {}
-endif
+" let g:deoplete#enable_at_startup = 1
+" if !exists('g:deoplete#omni#input_patterns')
+" 	let g:deoplete#omni#input_patterns = {}
+" endif
+" 
+" " let g:deoplete#disable_auto_complete = 1
+" autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+" 
+" " deoplete tab-complete
+" inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
-" let g:deoplete#disable_auto_complete = 1
-autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+"----- Coc.vim -----
+" inoremap <expr><cr> pumvisible() ? "\<C-y>" : "\<CR>"
+" inoremap <expr><tab> pumvisible() ? "\<C-n>" : "\<CR>"
+"
+" Make <tab> used for trigger completion, completion confirm, snippet expand and jump like VSCode.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? coc#rpc#request('doKeymap', ['snippets-expand-jump','']) :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
 
-" deoplete tab-complete
-inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+let g:coc_snippet_next = '<tab>'
 
 " no scratch window.
 " set completeopt-=preview
@@ -223,7 +242,8 @@ noremap : ;
 " coloring
 set t_Co=256
 syntax enable
-set background=dark
+set background=light
+colorscheme PaperColor
 " colorscheme 256_noir
 " colorscheme PaperColor
 " colorscheme material-monokai
@@ -239,7 +259,7 @@ let colors = [ '256_noir', 'Bgreen', 'PaperColor', 'dank-neon', 'gruvbox', 'hash
 :command! RandomColor execute 'colorscheme '.colors[(system('/bin/bash -c "echo -n $RANDOM"') % len(colors))] <bar> DisableDiffColors
 " <bar> execute 'TmuxlineSimple 1' 
 
-autocmd VimEnter * RandomColor
+" autocmd VimEnter * RandomColor
 
 autocmd BufEnter * DisableDiffColors
 
