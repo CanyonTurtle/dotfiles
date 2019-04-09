@@ -244,6 +244,13 @@ set t_Co=256
 syntax enable
 set background=light
 colorscheme PaperColor
+" coloring based on time of day
+if strftime("%H") < 18
+  set background=light
+else
+  set background=dark
+endif
+
 " colorscheme 256_noir
 " colorscheme PaperColor
 " colorscheme material-monokai

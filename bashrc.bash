@@ -95,3 +95,6 @@ export DISPLAY=:0
 # ssh key inject
 eval `ssh-agent -s`
 ssh-add ~/.ssh/*_rsa
+
+# used this to build ccls
+# PATH=$PATH:~/cmake/cmake-3.14.1-Linux-x86_64/bin/
