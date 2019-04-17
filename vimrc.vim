@@ -31,6 +31,7 @@ Plug 'lifepillar/vim-solarized8'
 Plug 'DankNeon/vim'
 Plug 'skielbasa/vim-material-monokai'
 Plug 'morhetz/gruvbox'
+Plug 'sonph/onehalf'
 
 Plug 'scrooloose/nerdtree' " NERD tree
 
@@ -125,6 +126,15 @@ function! s:check_back_space() abort
 endfunction
 
 let g:coc_snippet_next = '<tab>'
+
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references
 
 " no scratch window.
 " set completeopt-=preview
@@ -242,10 +252,10 @@ noremap : ;
 " coloring
 set t_Co=256
 syntax enable
-set background=light
+set background=dark
 colorscheme PaperColor
 " coloring based on time of day
-if strftime("%H") < 18
+if strftime("%H") < 18 && strftime("%H") > 7
   set background=light
 else
   set background=dark
@@ -328,7 +338,7 @@ tnoremap <C-h> <C-\><C-n><C-w>h
 
 command! -nargs=1 Vr vertical resize <args>
 
-noremap <C-m> :!gcc -o %:t:r.out %:t && ./%:t:r.out<CR>
+" noremap <C-M> :!gcc -o %:t:r.out %:t && ./%:t:r.out<CR>
 
 " this-machine-specific configuration.
 let localvimrc = expand('<sfile>:p:h') . '/vimrc.vim.local'
@@ -361,3 +371,4 @@ function! GFilesFallback()
 endfunction
 
 noremap <c-p> :call GFilesFallback()<CR>
+noremap s :call GFilesFallback()<CR>

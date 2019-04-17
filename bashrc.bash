@@ -43,6 +43,7 @@ LS_COLORS='ow=01;36;40'
 export LS_COLORS
 
 alias mm="clear; make 2>&1 | head -15"
+alias s="fzf | xargs nvim"
 
 # use vim as editor
 export EDITOR=nvim
