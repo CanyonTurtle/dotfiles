@@ -18,12 +18,15 @@ Plug 'xolox/vim-misc' "needed for session manager
 Plug 'xolox/vim-session' " session manager
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " fuzzy finder.
 Plug 'junegunn/fzf.vim' " fuzzy finder.
-Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}} " completion
+
+" Use release branch (recommend)
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'alok/notational-fzf-vim'
 
 " COLOR SCHEMES
 Plug 'abnt713/vim-hashpunk' 
 Plug 'andreasvc/vim-256noir'
-Plug 'BarretRen/vim-colorscheme'
+" Plug 'BarretRen/vim-colorscheme'
 Plug 'DankNeon/vim'
 Plug 'hzchirs/vim-material'
 Plug 'lifepillar/vim-solarized8'
@@ -31,7 +34,9 @@ Plug 'morhetz/gruvbox'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'skielbasa/vim-material-monokai'
 Plug 'sonph/onehalf'
-
+Plug 'haishanh/night-owl.vim'
+Plug 'ayu-theme/ayu-vim' " or other package manager
+Plug 'Yggdroot/indentLine'
 call plug#end()
 
 
@@ -103,4 +108,9 @@ function! GFilesFallback()
 endfunction
 
 noremap <c-p> :call GFilesFallback()<CR>
-noremap s :call GFilesFallback()<CR>
+noremap <F2> :call GFilesFallback()<CR>
+noremap <F3> :NV<CR>
+noremap <F4> :Goyo<CR>
+
+let g:nv_search_paths = ['~/notes']
+let g:nv_create_note_window = "edit"

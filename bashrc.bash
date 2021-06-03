@@ -86,7 +86,7 @@ bind '";e\C-m":"nvim\C-m"'
 
 bind '"\C-o":"nvim -c Ctrlo\C-m"'
 
-PS1='(⌐■_■) \w$ '
+# PS1='(⌐■_■) \w$ '
 
 unset color_prompt force_color_prompt
 
@@ -94,8 +94,34 @@ export EDITOR='nvim'
 export DISPLAY=:0 
 
 # ssh key inject
-eval `ssh-agent -s`
-ssh-add ~/.ssh/*_rsa
+eval "$(ssh-agent)"
+ssh-agent -s > /dev/null
+ssh-add ~/.ssh/*_rsa > /dev/null
 
 # used this to build ccls
 # PATH=$PATH:~/cmake/cmake-3.14.1-Linux-x86_64/bin/
+# deno
+export PATH="/home/CanyonTurtle/.deno/bin:$PATH"
+export PATH="/mnt/c/Users/canno/Documents/Code/go_wsl/go/bin:$PATH"
+
+# echo "                       /    .           "
+# echo " _________________    *&  ,&           "
+# echo " |big chungus is   |   /#  /#           "
+# echo " | watching.       |   /#/ /#           "
+# echo " |                 |   ,#, /#           "
+# echo " |code responsibly.|    ** ,/           "
+# echo " |_________________|     ////           "
+# echo "                        /////.          "
+# echo "                        /&&&&%*         "
+# echo "                        /&&&(&&         "
+# echo "                      ,/%&&/&&&,        "
+# echo "                    *///&&&&&&&&,*      "
+# echo "                  ,// (&&&&&&&&&&,/     "
+# echo "                  /&*&&&&&&&&&&&&&%&    "
+# echo "                 #@@(#&&&&&&&&&&&&@@,   "
+# echo "                  #@@&&&&&&&&&&&&&      "
+# echo "                  **##&&&&&&&&&&&       "
+# echo "                   **###&&&&&&&(      "
+# echo "                 &&&&&&&  ##&&&&&       "
+# echo "                                        "
+# echo "                                        "
