@@ -8,8 +8,6 @@ set number norelativenumber " numbering
 set wildchar=<Tab> wildmenu wildmode=full " wildmenu options
 set ignorecase " search ignore case
 set hidden " don't have to save buffers to move from them.
-command! -nargs=0 Light set background=light " fast way to change between light and dark modes.
-command! -nargs=0 Dark set background=dark
 set timeoutlen=350 " faster reaction time to commands, but harder to enter
 set splitbelow " better window nav
 set splitright " better window nav
@@ -71,10 +69,16 @@ if (has("termguicolors"))
 	set termguicolors
 endif
 
-" my set of preferrable colors
-let colors = [ '256_noir', 'Bgreen', 'PaperColor', 'dank-neon', 'gruvbox', 'hashpunk', 'hashpunk-lapis', 'hashpunk-sweet', 'material-monokai', 'monokai', 'solarized8', 'vim-material'] 
+let lighti = 0
+" my set of preferrable lights
+let lightcolors = ['PaperColor', 'gruvbox', 'solarized8', 'vim-material'] 
+
+let darki = 0
+" my set of preferrable darks
+let darkcolors = [ 'PaperColor', 'gruvbox', 'solarized8', 'vim-material', 'dank-neon', '256_noir', 'ayu', 'hashpunk', 'hashpunk-lapis', 'hashpunk-sweet', 'material-monokai', ] 
 
 " normalizes the looks across different color schemes.
+
 function! SimpleColors ()
   hi StatusLine gui=NONE guibg=NONE 
   hi StatusLineNC gui=NONE guibg=NONE 
@@ -82,22 +86,58 @@ function! SimpleColors ()
   hi VertSplit guibg=bg guifg=bg
 endfunction
 
-" fun: pick a random color
+" fun: pick a random color, either light or dark, based on current bg setting
 function! RandomColor()
-  execute 'colorscheme '.g:colors[(system('/bin/bash -c "echo -n $RANDOM"') % len(g:colors))] 
+  if &background ==# 'dark'
+    execute 'colorscheme '.g:darkcolors[(system('/bin/bash -c "echo -n $RANDOM"') % len(g:darkcolors))] 
+  elseif &background ==# 'light'
+    execute 'colorscheme '.g:lightcolors[(system('/bin/bash -c "echo -n $RANDOM"') % len(g:lightcolors))] 
+  endif
   call SimpleColors()
 endfunction
 
-autocmd BufEnter * call SimpleColors()
+" get next color
+function! NextColor()
+  if &background ==# 'dark'
+    let g:darki = (g:darki + 1) % (len(g:darkcolors))
+    execute 'colorscheme '.g:darkcolors[g:darki] 
+  elseif &background ==# 'light'
+    let g:lighti = (g:lighti + 1) % (len(g:lightcolors))
+    execute 'colorscheme '.g:lightcolors[g:lighti] 
+  endif
+  call SimpleColors()
+endfunction
+
+"toggle light or dark color 
+function! ToggleLightDark()
+  if &background ==# 'dark'
+    execute 'Light'
+    let g:lighti = (g:lighti) % (len(g:lightcolors))
+    execute 'colorscheme '.g:lightcolors[g:lighti] 
+elseif &background == 'light'
+    execute 'Dark'
+    let g:darki = (g:darki) % (len(g:darkcolors))
+    execute 'colorscheme '.g:darkcolors[g:darki] 
+  endif
+  call SimpleColors()
+endfunction
+
+command! -nargs=0 Light set background=light | call SimpleColors() " fast way to change between light and dark modes.
+command! -nargs=0 Dark set background=dark | call SimpleColors() 
+
+command! -nargs=0 Random call RandomColor()
+command! -nargs=0 NextColor call NextColor()
+command! -nargs=0 ToggleLightDar call ToggleLightDark()
 
 " more coloring fixes for the
 set t_Co=256
 syntax enable
+
 " coloring based on time of day
 if strftime("%H") < 18 && strftime("%H") > 7
-  set background=light
+  exec "Light"
 else
-  set background=dark
+  exec "Dark"
 endif
 
 " ===================== UTILITIES ==================== "

@@ -80,7 +80,7 @@ nnoremap <Leader>w :Gw<CR>
 nnoremap <Leader>a :Gwrite .<CR>
 
 " ----- Tagbar ----- "
-noremap <F8> :TagbarToggle<CR>
+" noremap <F8> :TagbarToggle<CR>
 
 " ----- Goyo ----- "
 noremap <leader>z :Goyo<CR>
@@ -111,6 +111,8 @@ noremap <c-p> :call GFilesFallback()<CR>
 noremap <F2> :call GFilesFallback()<CR>
 noremap <F3> :NV<CR>
 noremap <F4> :Goyo<CR>
+noremap <F6> :ToggleLightDar<CR>
+noremap <F7> :NextColor<CR>
 
 let g:nv_search_paths = ['~/notes']
 let g:nv_create_note_window = "edit"
