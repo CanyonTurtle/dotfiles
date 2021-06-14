@@ -11,7 +11,7 @@ Plug 'https://github.com/tpope/vim-sleuth' " detect indents automatically
 Plug 'junegunn/goyo.vim' " minimal mode
 Plug 'mattn/emmet-vim' " make HTML LIT
 Plug 'romainl/vim-cool' "searching highlight color goes away after moving cursor.
-Plug 'sheerun/vim-polyglot' " Syntax support for lots of languages
+" Plug 'sheerun/vim-polyglot' " Syntax support for lots of languages
 Plug 'tpope/vim-fugitive' " git control in vim
 Plug 'tpope/vim-surround' " surround.vim
 Plug 'xolox/vim-misc' "needed for session manager
@@ -113,6 +113,7 @@ noremap <F3> :NV<CR>
 noremap <F4> :Goyo<CR>
 noremap <F6> :ToggleLightDar<CR>
 noremap <F7> :NextColor<CR>
+noremap <F9> :Gstatus<CR>
 
 let g:nv_search_paths = ['~/notes']
 let g:nv_create_note_window = "edit"

@@ -106,6 +106,7 @@ function! NextColor()
     execute 'colorscheme '.g:lightcolors[g:lighti] 
   endif
   call SimpleColors()
+  echo 'next colorscheme: ' . g:colors_name
 endfunction
 
 "toggle light or dark color 
@@ -120,6 +121,7 @@ elseif &background == 'light'
     execute 'colorscheme '.g:darkcolors[g:darki] 
   endif
   call SimpleColors()
+  echo 'Toggled ' . &background . ' mode (' . g:colors_name . ').'
 endfunction
 
 command! -nargs=0 Light set background=light | call SimpleColors() " fast way to change between light and dark modes.
